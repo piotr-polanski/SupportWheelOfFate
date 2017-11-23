@@ -40,7 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IEngineersRepository.cs" />
+    <Compile Include="Abstract\ISupportEngineersFilterChain.cs" />
+    <Compile Include="Abstract\ISupportEngineersRepository.cs" />
     <Compile Include="BauShift.cs" />
     <Compile Include="Model\SupportEngineer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

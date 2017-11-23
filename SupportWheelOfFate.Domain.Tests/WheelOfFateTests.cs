@@ -1,4 +1,5 @@
-﻿using Ploeh.AutoFixture;
+﻿using System.Linq;
+using Ploeh.AutoFixture;
 using Shouldly;
 using SupportWheelOfFate.Domain.Model;
 using SupportWheelOfFate.Domain.Tests.Builders;
@@ -42,20 +43,20 @@ namespace SupportWheelOfFate.Domain.Tests
         }
 
         [Fact]
-        public void SelectTodaysBAUShift_Returns_RandomlySelectedTwoFromAvaliableSupportEnginners()
+        public void SelectTodaysBAUShift_Returns_BauShiftWithFirstAndLastFromFilteredOutEngineers()
         {
             //arrange
-            var avaliableEngineers = _fixture.CreateMany<SupportEngineer>(10);
+            var supportEngineersFromFilter = _fixture.CreateMany<SupportEngineer>(2);
             WheelOfFate sut = new WheelOfFateBuilder()
-                .With(avaliableEngineers)
+                .WithSupportEngineersFromFilter(supportEngineersFromFilter)
                 .Build();
 
             //act
             BauShift todaysBauShift = sut.SelectTodaysBauShift();
 
             //assert
-            avaliableEngineers.ShouldContain(todaysBauShift.AfterNoonShiftEngineer);
-            avaliableEngineers.ShouldContain(todaysBauShift.MorningShiftEngineer);
+            supportEngineersFromFilter.First().ShouldBe(todaysBauShift.MorningShiftEngineer);
+            supportEngineersFromFilter.Last().ShouldBe(todaysBauShift.AfterNoonShiftEngineer);
 
         }
 

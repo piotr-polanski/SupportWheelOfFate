@@ -3,7 +3,7 @@ using SupportWheelOfFate.Domain.Model;
 
 namespace SupportWheelOfFate.Domain.Abstract
 {
-    internal interface IEngineersRepository
+    internal interface ISupportEngineersRepository
     {
         IEnumerable<SupportEngineer> GetEngineers();
     }

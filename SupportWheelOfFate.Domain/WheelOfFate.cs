@@ -6,27 +6,22 @@ namespace SupportWheelOfFate.Domain
 {
     public class WheelOfFate
     {
-        private readonly IEngineersRepository _engineersRepository;
+        private readonly ISupportEngineersRepository _supportEngineersRepository;
+        private readonly ISupportEngineersFilterChain _supportEngineersFilter;
 
-        internal WheelOfFate(IEngineersRepository engineersRepository)
+        internal WheelOfFate(ISupportEngineersRepository supportEngineersRepository, ISupportEngineersFilterChain supportEngineersFilter)
         {
-            _engineersRepository = engineersRepository;
+            _supportEngineersRepository = supportEngineersRepository;
+            _supportEngineersFilter = supportEngineersFilter;
         }
 
         public BauShift SelectTodaysBauShift()
         {
-            var avaliableEngineers = _engineersRepository.GetEngineers().ToList();
+            var avaliableEngineers = _supportEngineersRepository.GetEngineers();
 
-            Random random = new Random();
+            var theChosenOnes = _supportEngineersFilter.Filter(avaliableEngineers);
 
-            var morningShifIndex = random.Next(1, avaliableEngineers.Count);
-            var morningShiftEngineer = avaliableEngineers.ElementAt(morningShifIndex);
-            avaliableEngineers.RemoveAt(morningShifIndex);
-
-            var afterNoonShifIndex = random.Next(1, avaliableEngineers.Count);
-            var afterNoonShiftEngineer = avaliableEngineers.ElementAt(afterNoonShifIndex);
-
-            return new BauShift(morningShiftEngineer, afterNoonShiftEngineer);
+            return new BauShift(theChosenOnes.First(), theChosenOnes.Last());
         }
     }
 }
