@@ -47,6 +47,8 @@
     <Compile Include="Abstract\ISupportEngineersFilterChain.cs" />
     <Compile Include="Abstract\ISupportEngineersRepository.cs" />
     <Compile Include="Exceptions\NotEnoughEngineersException.cs" />
+    <Compile Include="FilterChainFactories\DefaultFilterChainFactory.cs" />
+    <Compile Include="FilterChainFactories\IFilterChainFactory.cs" />
     <Compile Include="Model\BauShift.cs" />
     <Compile Include="Model\SupportEngineer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,8 +5,8 @@ using Ploeh.AutoFixture;
 using Shouldly;
 using SupportWheelOfFate.Domain;
 using SupportWheelOfFate.Domain.Abstract;
+using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
-using SupportWheelOfFate.Domain.SupportEngineersFilters;
 using Xunit;
 
 namespace SupportWhellOfFate.Domain.IntegrationTests
@@ -29,11 +29,11 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             var supportEngineerRepository = A.Fake<ISupportEngineersRepository>();
             A.CallTo(() => supportEngineerRepository.GetEngineers())
                 .Returns(engineers);
-            var chooseTwoRandomEngineersFilter = new ChooseTwoRandomEngineersFilter();
-            var engineersWhiDidntHadShiftYesterdayFilter = 
-                new EngineersWhoDidntHadShiftYesterdayFilter(chooseTwoRandomEngineersFilter);
 
-            var sut = new WheelOfFate(supportEngineerRepository, engineersWhiDidntHadShiftYesterdayFilter);
+            var filterChainFactory = new DefaultFilterChainFactory();
+
+
+            var sut = new WheelOfFate(supportEngineerRepository, filterChainFactory);
 
             //act
             var bauShift = sut.SelectTodaysBauShift();

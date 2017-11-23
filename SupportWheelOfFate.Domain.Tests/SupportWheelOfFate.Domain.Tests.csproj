@@ -78,6 +78,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Builders\WheelOfFateBuilder.cs" />
+    <Compile Include="FilterChainFactoryTests.cs" />
     <Compile Include="SupportEngineersFilterTests\AbstractSupportEngineersFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\ChooseTwoRandomEngineersFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\EngineersWhoDidntHadShiftYesterdayFilterTests.cs" />

@@ -2,6 +2,7 @@
 using FakeItEasy;
 using Ploeh.AutoFixture;
 using SupportWheelOfFate.Domain.Abstract;
+using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
 
 namespace SupportWheelOfFate.Domain.Tests.Builders
@@ -40,7 +41,11 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             A.CallTo(() => engineersFilterChain.Filter(_supportEngineersFromRepo))
                 .Returns(_supportEngineersAfterFilter);
 
-            return new WheelOfFate(engineersRepository, engineersFilterChain);
+            var filterChainFactory = A.Fake<IFilterChainFactory>();
+            A.CallTo(() => filterChainFactory.Create())
+                .Returns(engineersFilterChain);
+
+            return new WheelOfFate(engineersRepository, filterChainFactory);
         }
     }
 }
