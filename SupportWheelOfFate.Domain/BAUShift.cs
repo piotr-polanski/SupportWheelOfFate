@@ -2,9 +2,9 @@
 
 namespace SupportWheelOfFate.Domain
 {
-    public class BAUShift
+    public class BauShift
     {
-        public BAUShift(SupportEngineer morningShiftEngineer, SupportEngineer afterNoonShiftEngineer)
+        public BauShift(SupportEngineer morningShiftEngineer, SupportEngineer afterNoonShiftEngineer)
         {
             MorningShiftEngineer = morningShiftEngineer;
             AfterNoonShiftEngineer = afterNoonShiftEngineer;
