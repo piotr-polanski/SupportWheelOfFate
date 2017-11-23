@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Shouldly;
+using Xunit;
 
 namespace SupportWheelOfFate.Domain.Tests
 {
@@ -8,14 +9,27 @@ namespace SupportWheelOfFate.Domain.Tests
         public void SelectTodaysBAUShift_Returns_BAUShift()
         {
             //arrange
-            var sut = new WheelOfFate();
+            WheelOfFate sut = new WheelOfFate();
 
             //act
             BAUShift todaysBAUShift = sut.SelectTodaysBAUShift();
 
             //assert
-            Assert.NotNull(todaysBAUShift);
+            todaysBAUShift.ShouldNotBeNull();
+        }
 
+        [Fact]
+        public void SelectTodaysBAUShif_Returns_BAUShiftWithTwoEngineers()
+        {
+            //arrange
+            WheelOfFate sut = new WheelOfFate();
+
+            //act
+            BAUShift todaysBAUShift = sut.SelectTodaysBAUShift();
+
+            //assert
+            todaysBAUShift.MorningShiftEngineer.ShouldNotBeNull();
+            todaysBAUShift.AfterNoonShiftEngineer.ShouldNotBeNull();
         }
     }
 }
