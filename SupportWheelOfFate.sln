@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportWheelOfFate.Domain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportWheelOfFate.Domain.Tests", "SupportWheelOfFate.Domain.Tests\SupportWheelOfFate.Domain.Tests.csproj", "{B37C9699-CD3D-4AE9-9569-82900D7E1585}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportWhellOfFate.Domain.IntegrationTests", "SupportWhellOfFate.Domain.IntegrationTests\SupportWhellOfFate.Domain.IntegrationTests.csproj", "{AFC87BB7-732B-4730-A86C-5D24A7352B8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B37C9699-CD3D-4AE9-9569-82900D7E1585}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B37C9699-CD3D-4AE9-9569-82900D7E1585}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B37C9699-CD3D-4AE9-9569-82900D7E1585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC87BB7-732B-4730-A86C-5D24A7352B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC87BB7-732B-4730-A86C-5D24A7352B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC87BB7-732B-4730-A86C-5D24A7352B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC87BB7-732B-4730-A86C-5D24A7352B8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

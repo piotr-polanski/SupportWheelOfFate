@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using FakeItEasy;
 using Ploeh.AutoFixture;
 using Shouldly;
+using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.Exceptions;
 using SupportWheelOfFate.Domain.Model;
 using SupportWheelOfFate.Domain.SupportEngineersFilters;
@@ -11,10 +14,10 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
     public class ChooseTwoRandomEngineersFilterTests
     {
         [Fact]
-        public void Filter_Given_MoreThanTwoEngineers_Returns_TwoRandomEngineers()
+        public void Filter_Given_MoreThanOneEngineer_Returns_TwoRandomEngineers()
         {
             //arrange
-            var engineers = new Fixture().CreateMany<SupportEngineer>();
+            var engineers = new Fixture().CreateMany<SupportEngineer>(2);
             var sut = new ChooseTwoRandomEngineersFilter();
 
             //act
@@ -47,5 +50,6 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
             //act and assert
             Assert.Throws<NotEnoughEngineersException>(() => sut.Filter(null));
         }
+
     }
 }

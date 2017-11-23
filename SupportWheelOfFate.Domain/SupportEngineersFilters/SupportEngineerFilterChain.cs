@@ -6,17 +6,18 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 {
     internal abstract class SupportEngineerFilterChain : ISupportEngineersFilterChain
     {
-        private readonly ISupportEngineersFilterChain _successor;
-
-        protected SupportEngineerFilterChain()
-        {
-            
-        }
         protected SupportEngineerFilterChain(ISupportEngineersFilterChain successor)
         {
-            _successor = successor;
+            Successor = successor;
         }
+        public ISupportEngineersFilterChain Successor { get; }
 
-        public abstract IEnumerable<SupportEngineer> Filter(IEnumerable<SupportEngineer> supportEngineersToFilter);
+        public IEnumerable<SupportEngineer> Filter(IEnumerable<SupportEngineer> supportEngineersToFilter)
+        {
+            var filteredEngineers = FilterEngineers(supportEngineersToFilter);
+
+            return Successor == null ? filteredEngineers : Successor.Filter(filteredEngineers);
+        }
+        protected abstract IEnumerable<SupportEngineer> FilterEngineers(IEnumerable<SupportEngineer> supportEngineers);
     }
 }

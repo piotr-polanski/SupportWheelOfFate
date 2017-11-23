@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SupportWheelOfFate.Domain")]
+[assembly: AssemblyTitle("SupportWhellOfFate.Domain.IntegrationTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nordea")]
-[assembly: AssemblyProduct("SupportWheelOfFate.Domain")]
+[assembly: AssemblyProduct("SupportWhellOfFate.Domain.IntegrationTests")]
 [assembly: AssemblyCopyright("Copyright © Nordea 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("131e64bf-5db9-4c78-818e-7336df1a006b")]
+[assembly: Guid("afc87bb7-732b-4730-a86c-5d24a7352b8a")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,6 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("SupportWheelOfFate.Domain.Tests")]
-[assembly: InternalsVisibleTo("SupportWhellOfFate.Domain.IntegrationTests")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]

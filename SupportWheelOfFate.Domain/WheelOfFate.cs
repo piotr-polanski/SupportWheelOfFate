@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.Model;
 
