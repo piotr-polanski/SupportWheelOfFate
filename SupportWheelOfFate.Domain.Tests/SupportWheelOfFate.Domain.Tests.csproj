@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Builders\WheelOfFateBuilder.cs" />
     <Compile Include="SupportEngineersFilterTests\ChooseTwoRandomEngineersFilterTests.cs" />
+    <Compile Include="SupportEngineersFilterTests\EngineersWhoDidntHadShiftYesterdayFilterTests.cs" />
     <Compile Include="WheelOfFateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

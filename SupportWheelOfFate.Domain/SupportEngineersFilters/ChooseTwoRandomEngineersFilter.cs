@@ -15,6 +15,7 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
             That(supportEngineersToFilter, nameof(supportEngineersToFilter))
                 .WithException(e => new NotEnoughEngineersException("Provided engineers list is null"))
                 .IsNotNull();
+
             That(supportEngineersToFilter.Count(), nameof(supportEngineersToFilter))
                 .WithException(e => new NotEnoughEngineersException("There is not enough avaliable engineers for BAU shift"))
                 .IsGt(2);

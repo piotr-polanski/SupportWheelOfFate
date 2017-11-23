@@ -51,6 +51,7 @@
     <Compile Include="Model\SupportEngineer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SupportEngineersFilters\ChooseTwoRandomEngineersFilter.cs" />
+    <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadShiftYesterdayFilter.cs" />
     <Compile Include="SupportEngineersFilters\SupportEngineerFilterChain.cs" />
     <Compile Include="WheelOfFate.cs" />
   </ItemGroup>
