@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ensure.That, Version=7.1.0.55, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ensure.That.7.1.0\lib\net451\Ensure.That.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,10 +46,16 @@
   <ItemGroup>
     <Compile Include="Abstract\ISupportEngineersFilterChain.cs" />
     <Compile Include="Abstract\ISupportEngineersRepository.cs" />
-    <Compile Include="BauShift.cs" />
+    <Compile Include="Exceptions\NotEnoughEngineersException.cs" />
+    <Compile Include="Model\BauShift.cs" />
     <Compile Include="Model\SupportEngineer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupportEngineersFilters\ChooseTwoRandomEngineersFilter.cs" />
+    <Compile Include="SupportEngineersFilters\SupportEngineerFilterChain.cs" />
     <Compile Include="WheelOfFate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,4 @@
-﻿using SupportWheelOfFate.Domain.Model;
-
-namespace SupportWheelOfFate.Domain
+﻿namespace SupportWheelOfFate.Domain.Model
 {
     public class BauShift
     {

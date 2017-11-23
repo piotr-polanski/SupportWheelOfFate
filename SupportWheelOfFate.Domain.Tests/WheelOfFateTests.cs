@@ -59,17 +59,5 @@ namespace SupportWheelOfFate.Domain.Tests
             supportEngineersFromFilter.Last().ShouldBe(todaysBauShift.AfterNoonShiftEngineer);
 
         }
-
-        //[Fact]
-        //public void SelectTodaysBAUShift_When_NoSupportEngineers_Then_ThrowsNoAvaliableSupportEngineersException()
-        //{
-        //    Assert.True(false);
-        //}
-        
-        //[Fact]
-        //public void SelectTodaysBAUShift_When_OnlyOneSupportEngineerAvaliable_Then_ThrowsOnlyOneSupportEngineerAvaliableException()
-        //{
-        //    Assert.True(false);
-        //}
     }
 }
