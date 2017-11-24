@@ -2,13 +2,13 @@
 {
     public class BauShift
     {
-        public BauShift(SupportEngineer morningShiftEngineer, SupportEngineer afterNoonShiftEngineer)
+        public BauShift(ISupportEngineer morningShiftEngineer, ISupportEngineer afterNoonShiftEngineer)
         {
             MorningShiftEngineer = morningShiftEngineer;
             AfterNoonShiftEngineer = afterNoonShiftEngineer;
         }
 
-        public SupportEngineer MorningShiftEngineer { get; }
-        public SupportEngineer AfterNoonShiftEngineer { get; }
+        public ISupportEngineer MorningShiftEngineer { get; }
+        public ISupportEngineer AfterNoonShiftEngineer { get; }
     }
 }

@@ -20,14 +20,14 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
         {
         }
 
-        protected override IEnumerable<SupportEngineer> FilterEngineers(IEnumerable<SupportEngineer> supportEngineersToFilter)
+        protected override IEnumerable<ISupportEngineer> FilterEngineers(IEnumerable<ISupportEngineer> supportEngineersToFilter)
         {
             Ensure.That(supportEngineersToFilter, nameof(supportEngineersToFilter))
                 .WithException(e => new NotEnoughEngineersException("Provided engineers list is null"))
                 .IsNotNull();
 
             return supportEngineersToFilter
-                .Where(se => (DateTime.Today - se.LastShiftDate).TotalDays > 1 );
+                .Where(se => se.DidntHadShiftYesterday());
         }
     }
 }

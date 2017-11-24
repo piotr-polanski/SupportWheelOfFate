@@ -7,6 +7,7 @@ using SupportWheelOfFate.Domain;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
+using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;
 
 namespace SupportWhellOfFate.Domain.IntegrationTests
@@ -17,14 +18,10 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
         public void SelectTodaysBauShift_Given_10Engineers_Returns_TwoEngineers()
         {
             //arrange
-            var fixture = new Fixture();
-            fixture.Customize<SupportEngineer>(se => se
-                .With(s => s.LastShiftDate, DateTime.Today.AddDays(-1)));
-            var engineers = fixture.CreateMany<SupportEngineer>(10);
-
-            //set two engineers who didnt had shift yesterday
-            engineers.First().LastShiftDate = DateTime.Today.AddDays(-2);
-            engineers.Last().LastShiftDate = DateTime.Today.AddDays(-5);
+            var engineers = new SupportEngineerListBuilder()
+                .WithEngineersWhoHadShiftYesterday(8)
+                .WithEngineersWhoDidntHadShiftYesterday(2)
+                .Build();
 
             var supportEngineerRepository = A.Fake<ISupportEngineersRepository>();
             A.CallTo(() => supportEngineerRepository.GetEngineers())

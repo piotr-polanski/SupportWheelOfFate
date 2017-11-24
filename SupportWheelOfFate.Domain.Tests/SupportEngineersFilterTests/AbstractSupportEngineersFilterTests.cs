@@ -4,6 +4,7 @@ using Ploeh.AutoFixture;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.Model;
 using SupportWheelOfFate.Domain.SupportEngineersFilters;
+using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;
 
 namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
@@ -14,7 +15,9 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_MoreThanTwoEngineersAndSuccessor_Calls_Successor()
         {
             //arrange
-            var engineers = new Fixture().CreateMany<SupportEngineer>(10);
+            var engineers = new SupportEngineerListBuilder()
+                .WithEngineersWhoHadShiftYesterday(10)
+                .Build();
             var successor = A.Fake<ISupportEngineersFilterChain>();
 
             var sut = new ChooseTwoRandomEngineersFilter(successor);
@@ -24,7 +27,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
 
 
             //assert
-            A.CallTo(() => successor.Filter(A<IEnumerable<SupportEngineer>>._))
+            A.CallTo(() => successor.Filter(A<IEnumerable<ISupportEngineer>>._))
                 .MustHaveHappened(Repeated.Exactly.Once);
         }
     }

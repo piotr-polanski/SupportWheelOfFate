@@ -5,6 +5,7 @@ namespace SupportWheelOfFate.Domain.Abstract
 {
     internal interface ISupportEngineersRepository
     {
-        IEnumerable<SupportEngineer> GetEngineers();
+        IEnumerable<ISupportEngineer> GetEngineers();
+        void Save();
     }
 }

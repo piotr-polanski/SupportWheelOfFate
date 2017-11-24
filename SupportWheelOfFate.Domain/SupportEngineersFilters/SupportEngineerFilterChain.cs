@@ -12,12 +12,12 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
         }
         public ISupportEngineersFilterChain Successor { get; }
 
-        public IEnumerable<SupportEngineer> Filter(IEnumerable<SupportEngineer> supportEngineersToFilter)
+        public IEnumerable<ISupportEngineer> Filter(IEnumerable<ISupportEngineer> supportEngineersToFilter)
         {
             var filteredEngineers = FilterEngineers(supportEngineersToFilter);
 
             return Successor == null ? filteredEngineers : Successor.Filter(filteredEngineers);
         }
-        protected abstract IEnumerable<SupportEngineer> FilterEngineers(IEnumerable<SupportEngineer> supportEngineers);
+        protected abstract IEnumerable<ISupportEngineer> FilterEngineers(IEnumerable<ISupportEngineer> supportEngineers);
     }
 }

@@ -5,7 +5,7 @@ namespace SupportWheelOfFate.Domain.Abstract
 {
     internal interface ISupportEngineersFilterChain
     {
-        IEnumerable<SupportEngineer> Filter(IEnumerable<SupportEngineer> supportEngineersToFilter);
+        IEnumerable<ISupportEngineer> Filter(IEnumerable<ISupportEngineer> supportEngineersToFilter);
         ISupportEngineersFilterChain Successor { get; }
     }
 }

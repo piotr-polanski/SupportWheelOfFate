@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
@@ -25,7 +26,14 @@ namespace SupportWheelOfFate.Domain
 
             var theChosenOnes = filterChain.Filter(avaliableEngineers);
 
-            return new BauShift(theChosenOnes.First(), theChosenOnes.Last());
+            var bauShift = new BauShift(theChosenOnes.First(), theChosenOnes.Last());
+
+            bauShift.MorningShiftEngineer.LogTodaysShift();
+            bauShift.AfterNoonShiftEngineer.LogTodaysShift();
+
+            _supportEngineersRepository.Save();
+
+            return bauShift;
         }
     }
 }

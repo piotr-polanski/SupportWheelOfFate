@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using FakeItEasy;
-using Ploeh.AutoFixture;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
@@ -9,24 +8,26 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
 {
     public class WheelOfFateBuilder
     {
-        private IEnumerable<SupportEngineer> _supportEngineersFromRepo;
-        private readonly Fixture _fixture;
-        private IEnumerable<SupportEngineer> _supportEngineersAfterFilter;
+        private IEnumerable<ISupportEngineer> _supportEngineersFromRepo;
+        private IEnumerable<ISupportEngineer> _supportEngineersAfterFilter;
 
         public WheelOfFateBuilder()
         {
-            _fixture = new Fixture();
-            _supportEngineersFromRepo = _fixture.CreateMany<SupportEngineer>(10);
-            _supportEngineersAfterFilter = _fixture.CreateMany<SupportEngineer>(2);
+            _supportEngineersFromRepo = new SupportEngineerListBuilder()
+                .WithEngineersWhoHadShiftYesterday(5)
+                .Build();
+            _supportEngineersAfterFilter = new SupportEngineerListBuilder()
+                .WithEngineersWhoDidntHadShiftYesterday(5)
+                .Build();
         }
 
-        public WheelOfFateBuilder WithEngineersFromRepo(IEnumerable<SupportEngineer> supportEngineers)
+        public WheelOfFateBuilder WithEngineersFromRepo(IEnumerable<ISupportEngineer> supportEngineers)
         {
             _supportEngineersFromRepo = supportEngineers;
             return this;
         }
 
-        public WheelOfFateBuilder WithSupportEngineersFromFilter(IEnumerable<SupportEngineer> supportEngineers)
+        public WheelOfFateBuilder WithSupportEngineersFromFilter(IEnumerable<ISupportEngineer> supportEngineers)
         {
             _supportEngineersAfterFilter = supportEngineers;
             return this;

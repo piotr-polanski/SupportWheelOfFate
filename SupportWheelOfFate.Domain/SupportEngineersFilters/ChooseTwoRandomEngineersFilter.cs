@@ -19,7 +19,7 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
         {
         }
 
-        protected override IEnumerable<SupportEngineer> FilterEngineers(IEnumerable<SupportEngineer> supportEngineersToFilter)
+        protected override IEnumerable<ISupportEngineer> FilterEngineers(IEnumerable<ISupportEngineer> supportEngineersToFilter)
         {
             That(supportEngineersToFilter, nameof(supportEngineersToFilter))
                 .WithException(e => new NotEnoughEngineersException("Provided engineers list is null"))
@@ -40,7 +40,7 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
             var afterNoonShifIndex = random.Next(0, supportEngineersList.Count);
             var afterNoonShiftEngineer = supportEngineersList.ElementAt(afterNoonShifIndex);
 
-            return new List<SupportEngineer>
+            return new List<ISupportEngineer>
             {
                 morningShiftEngineer, afterNoonShiftEngineer
             };

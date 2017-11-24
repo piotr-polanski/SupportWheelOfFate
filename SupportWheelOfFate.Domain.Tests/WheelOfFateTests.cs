@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using FakeItEasy;
 using Ploeh.AutoFixture;
 using Shouldly;
 using SupportWheelOfFate.Domain.Model;
@@ -46,7 +47,9 @@ namespace SupportWheelOfFate.Domain.Tests
         public void SelectTodaysBAUShift_Returns_BauShiftWithFirstAndLastFromFilteredOutEngineers()
         {
             //arrange
-            var supportEngineersFromFilter = _fixture.CreateMany<SupportEngineer>(2);
+            var supportEngineersFromFilter = new SupportEngineerListBuilder()
+                .WithEngineersWhoDidntHadShiftYesterday(2)
+                .Build();
             WheelOfFate sut = new WheelOfFateBuilder()
                 .WithSupportEngineersFromFilter(supportEngineersFromFilter)
                 .Build();
@@ -58,6 +61,27 @@ namespace SupportWheelOfFate.Domain.Tests
             supportEngineersFromFilter.First().ShouldBe(todaysBauShift.MorningShiftEngineer);
             supportEngineersFromFilter.Last().ShouldBe(todaysBauShift.AfterNoonShiftEngineer);
 
+        }
+
+        [Fact]
+        public void SelectTodaysBauShift_BauShiftIsAddingShiftDateToChosenEngineers()
+        {
+            //arrange
+            var supportEngineersFromFilter = new SupportEngineerListBuilder()
+                .WithEngineersWhoDidntHadShiftYesterday(2)
+                .Build();
+            var sut = new WheelOfFateBuilder()
+                .WithSupportEngineersFromFilter(supportEngineersFromFilter)
+                .Build();
+
+            //act
+            var bauShift = sut.SelectTodaysBauShift();
+
+            //assert
+            A.CallTo(() => supportEngineersFromFilter.First().LogTodaysShift())
+                .MustHaveHappened(Repeated.Exactly.Once);
+            A.CallTo(() => supportEngineersFromFilter.Last().LogTodaysShift())
+                .MustHaveHappened(Repeated.Exactly.Once);
         }
     }
 }

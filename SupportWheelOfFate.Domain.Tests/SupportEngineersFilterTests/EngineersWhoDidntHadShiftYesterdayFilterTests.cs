@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using FakeItEasy;
 using Ploeh.AutoFixture;
 using Shouldly;
 using SupportWheelOfFate.Domain.Exceptions;
 using SupportWheelOfFate.Domain.Model;
 using SupportWheelOfFate.Domain.SupportEngineersFilters;
+using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;
 
 namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
@@ -15,10 +18,10 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_EngineersWhoDidntHadShiftYesterday_Return_SameAmountOfEngineers()
         {
             //arrange
-            var fixture = new Fixture();
-            fixture.Customize<SupportEngineer>(se => se
-                .With(s => s.LastShiftDate, DateTime.Today.AddDays(-2)));
-            var engineersWhoDidntHadShiftYesterday = fixture.CreateMany<SupportEngineer>(10);
+
+            var engineersWhoDidntHadShiftYesterday = new SupportEngineerListBuilder()
+                .WithEngineersWhoDidntHadShiftYesterday(4)
+                .Build();
 
             var sut = new EngineersWhoDidntHadShiftYesterdayFilter();
 
@@ -29,14 +32,15 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
             enginerrsAvaliableForShift.Count().ShouldBe(engineersWhoDidntHadShiftYesterday.Count());
         }
 
+        
+
         [Fact]
         public void Filter_Given_EngineersWhoHadShiftYesterday_Return_EmptyCollection()
         {
             //arrange
-            var fixture = new Fixture();
-            fixture.Customize<SupportEngineer>(se => se
-                .With(s => s.LastShiftDate, DateTime.Today.AddDays(-1)));
-            var engineersWhoHadShiftYesterday = fixture.CreateMany<SupportEngineer>(10);
+            var engineersWhoHadShiftYesterday = new SupportEngineerListBuilder()
+                .WithEngineersWhoHadShiftYesterday(10)
+                .Build();
 
             var sut = new EngineersWhoDidntHadShiftYesterdayFilter();
 
@@ -47,18 +51,17 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
             enginerrsAvaliableForShift.ShouldBeEmpty();
         }
 
+
+
         [Fact]
         public void Filter_Given_Engineers_Returns_OnlyThoseWhoDidntHadShiftYesterday()
         {
             //arrange
-            var fixture = new Fixture();
-            fixture.Customize<SupportEngineer>(se => se
-                .With(s => s.LastShiftDate, DateTime.Today.AddDays(-1)));
-            var engineers = fixture.CreateMany<SupportEngineer>(5);
+            var engineers = new SupportEngineerListBuilder()
+                .WithEngineersWhoHadShiftYesterday(8)
+                .WithEngineersWhoDidntHadShiftYesterday(2)
+                .Build();
 
-            //Two engineers didn't had shift yesterday
-            engineers.First().LastShiftDate = DateTime.Today.AddDays(-3);
-            engineers.Last().LastShiftDate = DateTime.Today.AddDays(-3);
 
             var sut = new EngineersWhoDidntHadShiftYesterdayFilter();
 
