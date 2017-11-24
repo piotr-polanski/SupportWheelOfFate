@@ -21,6 +21,13 @@ namespace SupportWheelOfFate.Domain
         public BauShift SelectTodaysBauShift()
         {
             var avaliableEngineers = _supportEngineersRepository.GetEngineers();
+            var existingTodaysShift =
+                avaliableEngineers.Where(e => e.HaveShiftToday());
+
+            if (existingTodaysShift.Any())
+            {
+                return new BauShift(existingTodaysShift.First(), existingTodaysShift.Last());
+            }
 
             var filterChain = _filterChainFactory.Create();
 

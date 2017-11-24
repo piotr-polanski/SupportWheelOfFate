@@ -131,5 +131,46 @@ namespace SupportWheelOfFate.Domain.Tests.Model
                 new object[] {DateTime.Today.AddDays(-14), DateTime.Today.AddDays(-14)},
             };
         }
+
+        [Fact]
+        public void HaveShiftToday_When_HeHaveShiftToday_Returns_True()
+        {
+            //arrange
+            var sut = new SupportEngineer();
+            sut.ShiftLog.Add(DateTime.Today);
+
+            //act
+            var result = sut.HaveShiftToday();
+
+            //assert
+            result.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void HaveShiftToday_When_HeDoesntHaveShiftToday_Returns_False()
+        {
+            //arrange
+            var sut = new SupportEngineer();
+            sut.ShiftLog.Add(DateTime.Today.AddDays(-1));
+
+            //act
+            var result = sut.HaveShiftToday();
+
+            //assert
+            result.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void HaveShiftToday_When_HeDidntHadeAnyShiftsAtAll_Returns_False()
+        {
+            //arrange
+            var sut = new SupportEngineer();
+
+            //act
+            var result = sut.HaveShiftToday();
+
+            //assert
+            result.ShouldBeFalse();
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
         private IList<ISupportEngineer> engineersWhoHadShiftYesterday;
         private IList<ISupportEngineer> engineersWhoDintHadTwoShiftInLastTwoWeeks;
         private IList<ISupportEngineer> engineersWhoHadTwoShiftInLastTwoWeeks;
+        private IList<ISupportEngineer> engineersWhoWereAlreadySelectedToday;
 
         public SupportEngineerListBuilder()
         {
@@ -19,6 +20,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             engineersWhoHadShiftYesterday = new List<ISupportEngineer>();
             engineersWhoDintHadTwoShiftInLastTwoWeeks = new List<ISupportEngineer>();
             engineersWhoHadTwoShiftInLastTwoWeeks = new List<ISupportEngineer>();
+            engineersWhoWereAlreadySelectedToday = new List<ISupportEngineer>();
         }
 
         public SupportEngineerListBuilder WithEngineersWhoDidntHadShiftYesterday(int engineersNumber)
@@ -67,13 +69,27 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             }
             return this;
         }
+        public SupportEngineerListBuilder WithEngineersAlreadySelectedForToday(int engineersNumber)
+        {
+            for (int i = 0; i < engineersNumber; i++)
+            {
+                var engineerWhoWereAlreadySelectedToday = A.Fake<ISupportEngineer>();
+                A.CallTo(() => engineerWhoWereAlreadySelectedToday.HaveShiftToday())
+                    .Returns(true);
+                A.CallTo(() => engineerWhoWereAlreadySelectedToday.Name)
+                    .Returns(nameof(WithEngineersAlreadySelectedForToday));
+                engineersWhoWereAlreadySelectedToday.Add(engineerWhoWereAlreadySelectedToday);
+            }
+            return this;
+        }
 
         public IEnumerable<ISupportEngineer> Build()
         {
             return engineersWhoDidntHadShiftYesterday
                 .Concat(engineersWhoHadShiftYesterday)
                 .Concat(engineersWhoDintHadTwoShiftInLastTwoWeeks)
-                .Concat(engineersWhoHadTwoShiftInLastTwoWeeks);
+                .Concat(engineersWhoHadTwoShiftInLastTwoWeeks)
+                .Concat(engineersWhoWereAlreadySelectedToday);
         }
 
     }

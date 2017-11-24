@@ -42,6 +42,13 @@ namespace SupportWheelOfFate.Domain.Model
             return false;
         }
 
+        public bool HaveShiftToday()
+        {
+            if (ShiftLog.Any())
+                return ShiftLog.OrderByDescending(d => d).First() == DateTime.Today;
+            return false;
+        }
+
         public bool DidntHadTwoShiftInLastTwoWeeks()
         {
             return !HadTwoShiftsInLastTwoWeeks();

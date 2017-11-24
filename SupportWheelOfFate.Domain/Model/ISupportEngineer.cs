@@ -12,5 +12,6 @@ namespace SupportWheelOfFate.Domain.Model
         bool HadShiftYesterday();
         bool DidntHadTwoShiftInLastTwoWeeks();
         bool HadTwoShiftsInLastTwoWeeks();
+        bool HaveShiftToday();
     }
 }
