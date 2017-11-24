@@ -39,6 +39,10 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             bauShift.ShouldNotBeNull();
             bauShift.MorningShiftEngineer.ShouldNotBeNull();
             bauShift.AfterNoonShiftEngineer.ShouldNotBeNull();
+            A.CallTo(() => bauShift.MorningShiftEngineer.LogTodaysShift())
+                .MustHaveHappened(Repeated.Exactly.Once);
+            A.CallTo(() => bauShift.AfterNoonShiftEngineer.LogTodaysShift())
+                .MustHaveHappened(Repeated.Exactly.Once);
         }
 
     }

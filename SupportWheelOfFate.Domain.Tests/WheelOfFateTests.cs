@@ -2,6 +2,7 @@
 using FakeItEasy;
 using Ploeh.AutoFixture;
 using Shouldly;
+using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.Model;
 using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;
@@ -81,6 +82,23 @@ namespace SupportWheelOfFate.Domain.Tests
             A.CallTo(() => supportEngineersFromFilter.First().LogTodaysShift())
                 .MustHaveHappened(Repeated.Exactly.Once);
             A.CallTo(() => supportEngineersFromFilter.Last().LogTodaysShift())
+                .MustHaveHappened(Repeated.Exactly.Once);
+        }
+
+        [Fact]
+        public void SelectTodaysBauShift_CallsSaveOnEngineersRepository()
+        {
+            //arrange
+            var supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
+            var sut = new WheelOfFateBuilder()
+                .WihtSupportEngineersRpository(supportEngineersRepository)
+                .Build();
+
+            //act
+            var bauShift = sut.SelectTodaysBauShift();
+
+            //assert
+            A.CallTo(() => supportEngineersRepository.Save())
                 .MustHaveHappened(Repeated.Exactly.Once);
         }
     }
