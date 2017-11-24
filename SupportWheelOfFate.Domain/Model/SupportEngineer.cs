@@ -6,6 +6,7 @@ namespace SupportWheelOfFate.Domain.Model
 {
     public class SupportEngineer : ISupportEngineer
     {
+        private const int FourteenDays = 14;
 
         public SupportEngineer()
         {
@@ -30,5 +31,36 @@ namespace SupportWheelOfFate.Domain.Model
         {
             return !DidntHadShiftYesterday();
         }
+        public bool HadTwoShiftsInLastTwoWeeks()
+        {
+            if (DidntHadAnyShifts())
+                return false;
+            if (HaveMoreThanOneShift())
+                return 
+                    IsDateWithinTwoWeeks(ShiftLog.OrderByDescending(d => d).Skip(1).First()) 
+                    && IsDateWithinTwoWeeks(ShiftLog.OrderByDescending(d => d).First());
+            return false;
+        }
+
+        public bool DidntHadTwoShiftInLastTwoWeeks()
+        {
+            return !HadTwoShiftsInLastTwoWeeks();
+        }
+
+        private bool HaveMoreThanOneShift()
+        {
+            return ShiftLog.Count > 1;
+        }
+
+        private bool DidntHadAnyShifts()
+        {
+            return !ShiftLog.Any();
+        }
+
+        private bool IsDateWithinTwoWeeks(DateTime date)
+        {
+            return (DateTime.Today - date).TotalDays <= FourteenDays;
+        }
+
     }
 }

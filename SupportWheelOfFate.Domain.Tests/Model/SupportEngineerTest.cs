@@ -74,5 +74,62 @@ namespace SupportWheelOfFate.Domain.Tests.Model
             //assert
             sut.ShiftLog.Count.ShouldBe(1);
         }
+
+        [Theory, MemberData("DatesTwoWeeksAgo")]
+        public void DidntHadTwoShiftsInLastTwoWeeks_When_InFactHeDidntHad_Return_True(DateTime someDate, DateTime someOtherDate)
+        {
+            //arrange
+            var sut = new SupportEngineer();
+            if(someDate != default(DateTime))
+                sut.ShiftLog.Add(someDate);
+            if(someOtherDate != default(DateTime))
+                sut.ShiftLog.Add(someOtherDate);
+
+            //act
+            var result = sut.DidntHadTwoShiftInLastTwoWeeks();
+
+            //assert
+            result.ShouldBeTrue();
+        }
+
+        public static List<object[]> DatesTwoWeeksAgo()
+        {
+            return new List<object[]>()
+            {
+                new object[] {DateTime.Today.AddDays(-15), null},
+                new object[] {DateTime.Today.AddDays(-6), null},
+                new object[] {DateTime.Today.AddDays(-11), DateTime.Today.AddDays(-16)},
+                new object[] {DateTime.Today.AddDays(-15), DateTime.Today.AddDays(-16)},
+                new object[] {DateTime.Today.AddDays(-23), DateTime.Today.AddDays(-14)},
+                new object[] {DateTime.Today.AddDays(-15), DateTime.Today.AddDays(-14)},
+            };
+        }
+
+        [Theory, MemberData("DatesWithinTwoWeeks")]
+        public void HadTwoShiftsInLastTwoWeeks_When_InFactHeDid_Return_True(DateTime someDate, DateTime someOtherDate)
+        {
+            //arrange
+            var sut = new SupportEngineer();
+            if (someDate != default(DateTime))
+                sut.ShiftLog.Add(someDate);
+            if (someOtherDate != default(DateTime))
+                sut.ShiftLog.Add(someOtherDate);
+
+            //act
+            var result = sut.HadTwoShiftsInLastTwoWeeks();
+
+            //assert
+            result.ShouldBeTrue();
+        }
+
+        public static List<object[]> DatesWithinTwoWeeks()
+        {
+            return new List<object[]>()
+            {
+                new object[] {DateTime.Today.AddDays(-2), DateTime.Today.AddDays(-6)},
+                new object[] {DateTime.Today.AddDays(-13), DateTime.Today.AddDays(-13)},
+                new object[] {DateTime.Today.AddDays(-14), DateTime.Today.AddDays(-14)},
+            };
+        }
     }
 }
