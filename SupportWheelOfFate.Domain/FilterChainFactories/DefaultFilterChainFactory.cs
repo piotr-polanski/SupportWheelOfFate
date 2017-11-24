@@ -8,7 +8,10 @@ namespace SupportWheelOfFate.Domain.FilterChainFactories
         public ISupportEngineersFilterChain Create()
         {
             var randomFilter = new ChooseTwoRandomEngineersFilter();
-            return new EngineersWhoDidntHadShiftYesterdayFilter(randomFilter);
+            
+            var engineersWhoDidntHadShiftYesterday = new EngineersWhoDidntHadShiftYesterdayFilter(randomFilter);
+
+            return new EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter(engineersWhoDidntHadShiftYesterday);
         }
     }
 }

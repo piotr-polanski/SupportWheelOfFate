@@ -83,6 +83,7 @@
     <Compile Include="Model\SupportEngineerTest.cs" />
     <Compile Include="SupportEngineersFilterTests\AbstractSupportEngineersFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\ChooseTwoRandomEngineersFilterTests.cs" />
+    <Compile Include="SupportEngineersFilterTests\EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\EngineersWhoDidntHadShiftYesterdayFilterTests.cs" />
     <Compile Include="WheelOfFateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,11 +10,15 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
     {
         private IList<ISupportEngineer> engineersWhoDidntHadShiftYesterday;
         private IList<ISupportEngineer> engineersWhoHadShiftYesterday;
+        private IList<ISupportEngineer> engineersWhoDintHadTwoShiftInLastTwoWeeks;
+        private IList<ISupportEngineer> engineersWhoHadTwoShiftInLastTwoWeeks;
 
         public SupportEngineerListBuilder()
         {
             engineersWhoDidntHadShiftYesterday = new List<ISupportEngineer>();
             engineersWhoHadShiftYesterday = new List<ISupportEngineer>();
+            engineersWhoDintHadTwoShiftInLastTwoWeeks = new List<ISupportEngineer>();
+            engineersWhoHadTwoShiftInLastTwoWeeks = new List<ISupportEngineer>();
         }
 
         public SupportEngineerListBuilder WithEngineersWhoDidntHadShiftYesterday(int engineersNumber)
@@ -25,6 +29,28 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
                 A.CallTo(() => engineerWhoDidntHadShiftYesterday.DidntHadShiftYesterday())
                     .Returns(true);
                 engineersWhoDidntHadShiftYesterday.Add(engineerWhoDidntHadShiftYesterday);
+            }
+            return this;
+        }
+        public SupportEngineerListBuilder WihtEngineersWhoDidntHadTwoShiftInLastTwoWeeks(int engineersNumber)
+        {
+            for (int i = 0; i < engineersNumber; i++)
+            {
+                var engineerWhoDidntHadShiftInLastTwoWeeks = A.Fake<ISupportEngineer>();
+                A.CallTo(() => engineerWhoDidntHadShiftInLastTwoWeeks.DidntHadTwoShiftInLastTwoWeeks())
+                    .Returns(true);
+                engineersWhoDintHadTwoShiftInLastTwoWeeks.Add(engineerWhoDidntHadShiftInLastTwoWeeks);
+            }
+            return this;
+        }
+        public SupportEngineerListBuilder WihtEngineersWhoHadTwoShiftInLastTwoWeeks(int engineersNumber)
+        {
+            for (int i = 0; i < engineersNumber; i++)
+            {
+                var engineerWhoHadShiftInLastTwoWeeks = A.Fake<ISupportEngineer>();
+                A.CallTo(() => engineerWhoHadShiftInLastTwoWeeks.HadTwoShiftsInLastTwoWeeks())
+                    .Returns(true);
+                engineersWhoHadTwoShiftInLastTwoWeeks.Add(engineerWhoHadShiftInLastTwoWeeks);
             }
             return this;
         }
@@ -44,7 +70,11 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
 
         public IEnumerable<ISupportEngineer> Build()
         {
-            return engineersWhoDidntHadShiftYesterday.Concat(engineersWhoHadShiftYesterday);
+            return engineersWhoDidntHadShiftYesterday
+                .Concat(engineersWhoHadShiftYesterday)
+                .Concat(engineersWhoDintHadTwoShiftInLastTwoWeeks)
+                .Concat(engineersWhoHadTwoShiftInLastTwoWeeks);
         }
+
     }
 }
