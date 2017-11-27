@@ -28,7 +28,7 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         {
             //arrange
             var sut = new SupportEngineerBuilder()
-                .WithShiftLoggedFromNow(-1)
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-1))
                 .Build();
 
             //act
@@ -43,7 +43,7 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         {
             //arrange
             var sut = new SupportEngineerBuilder()
-                .WithShiftLoggedFromNow(-1)
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-1))
                 .Build();
 
             //act
@@ -156,7 +156,7 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         {
             //arrange
             var sut = new SupportEngineerBuilder()
-                .WithShiftLoggedFromNow(-1)
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-1))
                 .Build();
 
             //act

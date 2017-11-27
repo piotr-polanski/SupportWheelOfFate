@@ -18,25 +18,25 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
         {
             //arrange
             var engineer1WhoDidnHadShiftYesterday = new SupportEngineerBuilder()
-                .WithShiftLoggedFromNow(-2)
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-2))
                 .Build();
 
             var engineer2WhoDidnHadShiftYesterday = new SupportEngineerBuilder()
-                .WithShiftLoggedFromNow(-2)
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-2))
                 .Build();
 
             var engineerWhoHadShiftYesterday = new SupportEngineerBuilder()
-                .WithShiftLoggedFromNow(-1)
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-1))
                 .Build();
 
             var engineerWhoHadTwoShiftsInLastTwoWeeks = new SupportEngineerBuilder()
-                .WithShiftLoggedFromNow(-3)
-                .WithShiftLoggedFromNow(-12)
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-3))
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-12))
                 .Build();
 
             var engineer2WhoHadTwoShiftsInLastTwoWeeks = new SupportEngineerBuilder()
-                .WithShiftLoggedFromNow(-5)
-                .WithShiftLoggedFromNow(-11)
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-5))
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-11))
                 .Build();
 
             var engineers = new List<ISupportEngineer>()

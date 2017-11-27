@@ -16,13 +16,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             return supportEngineer;
         }
 
-        public SupportEngineerBuilder WithShiftLoggedFromNow(int daysToAdd)
-        {
-            shiftLog.Add(new Shift() { Date = DateTime.Today.AddDays(daysToAdd) });
-            return this;
-        }
-
-        internal SupportEngineerBuilder WithShiftLoggedOnDate(DateTime shiftDate)
+        public SupportEngineerBuilder WithShiftLoggedOnDate(DateTime shiftDate)
         {
             if(shiftDate != default(DateTime))
                 shiftLog.Add(new Shift() { Date = shiftDate });
