@@ -2,7 +2,7 @@
 
 namespace SupportWheelOfFate.Domain.FilterChainFactories
 {
-    internal interface IFilterChainFactory
+    public interface IFilterChainFactory
     {
         ISupportEngineersFilterChain Create();
     }

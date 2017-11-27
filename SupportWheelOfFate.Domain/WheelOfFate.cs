@@ -6,12 +6,12 @@ using SupportWheelOfFate.Domain.Model;
 
 namespace SupportWheelOfFate.Domain
 {
-    public class WheelOfFate
+    public class WheelOfFate : IWheelOfFate
     {
         private readonly ISupportEngineersRepository _supportEngineersRepository;
         private readonly IFilterChainFactory _filterChainFactory;
 
-        internal WheelOfFate(ISupportEngineersRepository supportEngineersRepository, 
+        public WheelOfFate(ISupportEngineersRepository supportEngineersRepository, 
             IFilterChainFactory filterChainFactory)
         {
             _supportEngineersRepository = supportEngineersRepository;
