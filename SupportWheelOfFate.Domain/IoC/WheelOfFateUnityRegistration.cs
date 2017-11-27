@@ -10,7 +10,7 @@ namespace SupportWheelOfFate.Domain.IoC
         public static void RegisterTypes(IUnityContainer unityContainer)
         {
             unityContainer.RegisterType<ISupportEngineersRepository, SupportEngineersRepository>();
-            unityContainer.RegisterType<IFilterChainFactory, DefaultFilterChainFactory>();
+            unityContainer.RegisterType<ISupportEngineerFilterChainFactory, DefaultSupportEngineerFilterChainFactory>();
             unityContainer.RegisterType<IWheelOfFate, WheelOfFate>();
         }
     }

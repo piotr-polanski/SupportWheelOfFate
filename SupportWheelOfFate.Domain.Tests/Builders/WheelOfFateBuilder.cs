@@ -11,7 +11,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
         private IEnumerable<ISupportEngineer> _supportEngineersFromRepo;
         private IEnumerable<ISupportEngineer> _supportEngineersAfterFilter;
         private ISupportEngineersRepository _supportEngineersRepository;
-        private readonly IFilterChainFactory _filterChainFactory;
+        private readonly ISupportEngineerFilterChainFactory _supportEngineerFilterChainFactory;
 
         public WheelOfFateBuilder()
         {
@@ -22,7 +22,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             _supportEngineersAfterFilter = new SupportEngineerListBuilder()
                 .WithEngineersWhoDidntHadShiftYesterday(5)
                 .Build();
-            _filterChainFactory = A.Fake<IFilterChainFactory>();
+            _supportEngineerFilterChainFactory = A.Fake<ISupportEngineerFilterChainFactory>();
         }
 
         public WheelOfFateBuilder WithEngineersFromRepo(IEnumerable<ISupportEngineer> supportEngineers)
@@ -52,10 +52,10 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             A.CallTo(() => engineersFilterChain.Filter(_supportEngineersFromRepo))
                 .Returns(_supportEngineersAfterFilter);
 
-            A.CallTo(() => _filterChainFactory.Create())
+            A.CallTo(() => _supportEngineerFilterChainFactory.Create())
                 .Returns(engineersFilterChain);
 
-            return new WheelOfFate(_supportEngineersRepository, _filterChainFactory);
+            return new WheelOfFate(_supportEngineersRepository, _supportEngineerFilterChainFactory);
         }
 
     }

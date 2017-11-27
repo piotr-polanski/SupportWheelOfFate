@@ -50,7 +50,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             A.CallTo(() => supportEngineerRepository.GetEngineers())
                 .Returns(engineers);
 
-            var filterChainFactory = new DefaultFilterChainFactory();
+            var filterChainFactory = new DefaultSupportEngineerFilterChainFactory();
 
             var sut = new WheelOfFate(supportEngineerRepository, filterChainFactory);
 
@@ -66,73 +66,6 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             //thats why we know if they were selected
             bauShift.MorningShiftEngineer.ShiftLog.Count.ShouldBe(2);
             bauShift.AfterNoonShiftEngineer.ShiftLog.Count.ShouldBe(2);
-        }
-
-        [Fact]
-        public void SelectTodaysBauShift_Given_ShiftAlredySelectedToday_Returns_TodayShift()
-        {
-            //arrange
-            var engineer1WhoDidnHadShiftYesterday = new SupportEngineerBuilder()
-                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-2))
-                .Build();
-
-            var engineer2WhoDidnHadShiftYesterday = new SupportEngineerBuilder()
-                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-2))
-                .Build();
-
-            var engineerWhoHadShiftYesterday = new SupportEngineerBuilder()
-                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-1))
-                .Build();
-
-            var engineerWhoHadTwoShiftsInLastTwoWeeks = new SupportEngineerBuilder()
-                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-3))
-                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-12))
-                .Build();
-
-            var engineer2WhoHadTwoShiftsInLastTwoWeeks = new SupportEngineerBuilder()
-                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-5))
-                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-11))
-                .Build();
-
-            var enginnerOneWhoWasSelectedToday = new SupportEngineerBuilder()
-                .WithShiftLoggedOnDate(DateTime.Today)
-                .Build();
-
-            var enginnerTwoWhoWasSelectedToday = new SupportEngineerBuilder()
-                .WithShiftLoggedOnDate(DateTime.Today)
-                .Build();
-
-
-            var engineers = new List<ISupportEngineer>()
-            {
-                engineer2WhoHadTwoShiftsInLastTwoWeeks, engineerWhoHadShiftYesterday,
-                engineerWhoHadTwoShiftsInLastTwoWeeks, engineer1WhoDidnHadShiftYesterday,
-                engineer2WhoDidnHadShiftYesterday, enginnerOneWhoWasSelectedToday,
-                enginnerTwoWhoWasSelectedToday
-            };
-
-            var supportEngineerRepository = A.Fake<ISupportEngineersRepository>();
-            A.CallTo(() => supportEngineerRepository.GetEngineers())
-                .Returns(engineers);
-
-            var filterChainFactory = new DefaultFilterChainFactory();
-
-            var sut = new WheelOfFate(supportEngineerRepository, filterChainFactory);
-
-            //act
-            var bauShift = sut.SelectTodaysBauShift();
-
-            //assert
-            bauShift.ShouldNotBeNull();
-            bauShift.MorningShiftEngineer.ShouldNotBeNull();
-            bauShift.AfterNoonShiftEngineer.ShouldNotBeNull();
-            var shiftEgineers = new List<ISupportEngineer>()
-            {
-                bauShift.MorningShiftEngineer,
-                bauShift.AfterNoonShiftEngineer
-            };
-            shiftEgineers.ShouldContain(enginnerOneWhoWasSelectedToday);
-            shiftEgineers.ShouldContain(enginnerTwoWhoWasSelectedToday);
         }
 
     }

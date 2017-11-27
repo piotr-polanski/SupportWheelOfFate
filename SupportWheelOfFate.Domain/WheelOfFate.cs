@@ -9,27 +9,24 @@ namespace SupportWheelOfFate.Domain
     public class WheelOfFate : IWheelOfFate
     {
         private readonly ISupportEngineersRepository _supportEngineersRepository;
-        private readonly IFilterChainFactory _filterChainFactory;
+        private readonly ISupportEngineerFilterChainFactory _supportEngineersFilterChainFactory;
 
         public WheelOfFate(ISupportEngineersRepository supportEngineersRepository, 
-            IFilterChainFactory filterChainFactory)
+            ISupportEngineerFilterChainFactory supportEngineersFilterChainFactory)
         {
             _supportEngineersRepository = supportEngineersRepository;
-            _filterChainFactory = filterChainFactory;
+            _supportEngineersFilterChainFactory = supportEngineersFilterChainFactory;
         }
 
         public BauShift SelectTodaysBauShift()
         {
             var avaliableEngineers = _supportEngineersRepository.GetEngineers();
 
-            var filterChain = _filterChainFactory.Create();
+            var engineersFilterChain = _supportEngineersFilterChainFactory.Create();
 
-            var theChosenOnes = filterChain.Filter(avaliableEngineers);
+            var theChosenOnes = engineersFilterChain.Filter(avaliableEngineers);
 
             var bauShift = new BauShift(theChosenOnes.First(), theChosenOnes.Last());
-
-            bauShift.MorningShiftEngineer.LogTodaysShift();
-            bauShift.AfterNoonShiftEngineer.LogTodaysShift();
 
             _supportEngineersRepository.Save();
 

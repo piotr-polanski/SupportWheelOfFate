@@ -80,12 +80,13 @@
     <Compile Include="Builders\SupportEngineerBuilder.cs" />
     <Compile Include="Builders\SupportEngineerListBuilder.cs" />
     <Compile Include="Builders\WheelOfFateBuilder.cs" />
-    <Compile Include="FilterChainFactoryTests.cs" />
+    <Compile Include="DefaultSupportEngineerFilterChainFactoryTests.cs" />
     <Compile Include="Model\SupportEngineerTest.cs" />
     <Compile Include="SupportEngineersFilterTests\AbstractSupportEngineersFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\ChooseTwoRandomEngineersFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\EngineersWhoDidntHadShiftYesterdayFilterTests.cs" />
+    <Compile Include="SupportEngineersFilterTests\LogShiftForSelectedEngineersFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\ShiftSelectedTodayFilterTests.cs" />
     <Compile Include="WheelOfFateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

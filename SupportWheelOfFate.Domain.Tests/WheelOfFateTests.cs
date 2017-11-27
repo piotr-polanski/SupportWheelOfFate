@@ -11,12 +11,6 @@ namespace SupportWheelOfFate.Domain.Tests
 {
     public class WheelOfFateTests
     {
-        private readonly Fixture _fixture;
-
-        public WheelOfFateTests()
-        {
-            _fixture = new Fixture();
-        }
         [Fact]
         public void SelectTodaysBAUShift_Returns_BAUShift()
         {
@@ -62,27 +56,6 @@ namespace SupportWheelOfFate.Domain.Tests
             supportEngineersFromFilter.First().ShouldBe(todaysBauShift.MorningShiftEngineer);
             supportEngineersFromFilter.Last().ShouldBe(todaysBauShift.AfterNoonShiftEngineer);
 
-        }
-
-        [Fact]
-        public void SelectTodaysBauShift_BauShiftIsAddingShiftDateToChosenEngineers()
-        {
-            //arrange
-            var supportEngineersFromFilter = new SupportEngineerListBuilder()
-                .WithEngineersWhoDidntHadShiftYesterday(2)
-                .Build();
-            var sut = new WheelOfFateBuilder()
-                .WithSupportEngineersFromFilter(supportEngineersFromFilter)
-                .Build();
-
-            //act
-            var bauShift = sut.SelectTodaysBauShift();
-
-            //assert
-            A.CallTo(() => supportEngineersFromFilter.First().LogTodaysShift())
-                .MustHaveHappened(Repeated.Exactly.Once);
-            A.CallTo(() => supportEngineersFromFilter.Last().LogTodaysShift())
-                .MustHaveHappened(Repeated.Exactly.Once);
         }
 
         [Fact]

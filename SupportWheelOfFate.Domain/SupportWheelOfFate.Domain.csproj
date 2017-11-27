@@ -60,8 +60,8 @@
     <Compile Include="Abstract\ISupportEngineersFilterChain.cs" />
     <Compile Include="Abstract\ISupportEngineersRepository.cs" />
     <Compile Include="Exceptions\NotEnoughEngineersException.cs" />
-    <Compile Include="FilterChainFactories\DefaultFilterChainFactory.cs" />
-    <Compile Include="FilterChainFactories\IFilterChainFactory.cs" />
+    <Compile Include="FilterChainFactories\DefaultSupportEngineerFilterChainFactory.cs" />
+    <Compile Include="FilterChainFactories\ISupportEngineerFilterChainFactory.cs" />
     <Compile Include="IoC\WheelOfFateUnityRegistration.cs" />
     <Compile Include="IWheelOfFate.cs" />
     <Compile Include="Model\BauShift.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="SupportEngineersFilters\ChooseTwoRandomEngineersFilter.cs" />
     <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadShiftYesterdayFilter.cs" />
     <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter.cs" />
+    <Compile Include="SupportEngineersFilters\LogShiftForSelectedEngineersFilter.cs" />
     <Compile Include="SupportEngineersFilters\ShiftSelectedTodayFilter.cs" />
     <Compile Include="SupportEngineersFilters\SupportEngineerFilterChain.cs" />
     <Compile Include="WheelOfFate.cs" />
