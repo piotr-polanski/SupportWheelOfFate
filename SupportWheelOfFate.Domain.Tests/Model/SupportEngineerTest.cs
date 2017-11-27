@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Shouldly;
 using SupportWheelOfFate.Domain.Model;
 using Xunit;
+using SupportWheelOfFate.Domain.Tests.Builders;
 
 namespace SupportWheelOfFate.Domain.Tests.Model
 {
@@ -12,7 +13,8 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void DidntHadShiftYesterday_When_EngieneerDidnHadShiftYesterday_Returns_True()
         {
             //arrange
-            var sut = new SupportEngineer();
+            var sut = new SupportEngineerBuilder()
+                .Build();
 
             //act
             var result = sut.DidntHadShiftYesterday();
@@ -25,8 +27,9 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void HadShiftYesterday_When_EngineerDidHadShiftYesterday_Returns_True()
         {
             //arrange
-            var sut = new SupportEngineer();
-            sut.ShiftLog.Add(DateTime.Today.AddDays(-1));
+            var sut = new SupportEngineerBuilder()
+                .WithShiftLoggedFromNow(-1)
+                .Build();
 
             //act
             var result = sut.HadShiftYesterday();
@@ -39,8 +42,9 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void DidntHadShiftYesterday_When_EngieneerDidHadShiftYesterday_Returns_False()
         {
             //arrange
-            var sut = new SupportEngineer();
-            sut.ShiftLog.Add(DateTime.Today.AddDays(-1));
+            var sut = new SupportEngineerBuilder()
+                .WithShiftLoggedFromNow(-1)
+                .Build();
 
             //act
             var result = sut.DidntHadShiftYesterday();
@@ -53,7 +57,8 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void HadShiftYesterday_When_EngineerDidntHadShiftYesterday_Returns_False()
         {
             //arrange
-            var sut = new SupportEngineer();
+            var sut = new SupportEngineerBuilder()
+                .Build();
 
             //act
             var result = sut.HadShiftYesterday();
@@ -66,7 +71,8 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void LogTodaysShift_AddTodaysDateToShiftLog()
         {
             //arrange
-            var sut = new SupportEngineer();
+            var sut = new SupportEngineerBuilder()
+                .Build();
 
             //act
             sut.LogTodaysShift();
@@ -79,11 +85,10 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void DidntHadTwoShiftsInLastTwoWeeks_When_InFactHeDidntHad_Return_True(DateTime someDate, DateTime someOtherDate)
         {
             //arrange
-            var sut = new SupportEngineer();
-            if(someDate != default(DateTime))
-                sut.ShiftLog.Add(someDate);
-            if(someOtherDate != default(DateTime))
-                sut.ShiftLog.Add(someOtherDate);
+            var sut = new SupportEngineerBuilder()
+                .WithShiftLoggedOnDate(someDate)
+                .WithShiftLoggedOnDate(someOtherDate)
+                .Build();
 
             //act
             var result = sut.DidntHadTwoShiftInLastTwoWeeks();
@@ -109,11 +114,10 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void HadTwoShiftsInLastTwoWeeks_When_InFactHeDid_Return_True(DateTime someDate, DateTime someOtherDate)
         {
             //arrange
-            var sut = new SupportEngineer();
-            if (someDate != default(DateTime))
-                sut.ShiftLog.Add(someDate);
-            if (someOtherDate != default(DateTime))
-                sut.ShiftLog.Add(someOtherDate);
+            var sut = new SupportEngineerBuilder()
+                .WithShiftLoggedOnDate(someDate)
+                .WithShiftLoggedOnDate(someOtherDate)
+                .Build();
 
             //act
             var result = sut.HadTwoShiftsInLastTwoWeeks();
@@ -136,8 +140,9 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void HaveShiftToday_When_HeHaveShiftToday_Returns_True()
         {
             //arrange
-            var sut = new SupportEngineer();
-            sut.ShiftLog.Add(DateTime.Today);
+            var sut = new SupportEngineerBuilder()
+                .WithShiftLoggedOnDate(DateTime.Today)
+                .Build();
 
             //act
             var result = sut.HaveShiftToday();
@@ -150,8 +155,9 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void HaveShiftToday_When_HeDoesntHaveShiftToday_Returns_False()
         {
             //arrange
-            var sut = new SupportEngineer();
-            sut.ShiftLog.Add(DateTime.Today.AddDays(-1));
+            var sut = new SupportEngineerBuilder()
+                .WithShiftLoggedFromNow(-1)
+                .Build();
 
             //act
             var result = sut.HaveShiftToday();
@@ -164,7 +170,8 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         public void HaveShiftToday_When_HeDidntHadeAnyShiftsAtAll_Returns_False()
         {
             //arrange
-            var sut = new SupportEngineer();
+            var sut = new SupportEngineerBuilder()
+                .Build();
 
             //act
             var result = sut.HaveShiftToday();

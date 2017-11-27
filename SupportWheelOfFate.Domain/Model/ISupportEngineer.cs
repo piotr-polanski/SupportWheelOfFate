@@ -5,8 +5,9 @@ namespace SupportWheelOfFate.Domain.Model
 {
     public interface ISupportEngineer
     {
+        int Id { get; set; }
         string Name { get; set; }
-        IList<DateTime> ShiftLog { get; }
+        ICollection<Shift> ShiftLog { get; }
         void LogTodaysShift();
         bool DidntHadShiftYesterday();
         bool HadShiftYesterday();

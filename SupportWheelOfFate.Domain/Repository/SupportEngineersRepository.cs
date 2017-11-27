@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.Model;
 
@@ -14,7 +16,9 @@ namespace SupportWheelOfFate.Domain.Repository
         }
         public IEnumerable<ISupportEngineer> GetEngineers()
         {
-            return _wheelOfFateContext.SuportEngineers;
+            return _wheelOfFateContext.SuportEngineers
+                .Include(e => e.ShiftLog)
+                .ToList();
         }
 
         public void Save()

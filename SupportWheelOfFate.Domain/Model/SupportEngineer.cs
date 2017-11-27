@@ -8,23 +8,30 @@ namespace SupportWheelOfFate.Domain.Model
     {
         private const int FourteenDays = 14;
 
-        public SupportEngineer()
+        internal SupportEngineer()
         {
-            ShiftLog = new List<DateTime>();
         }
+
+        internal SupportEngineer(string name, IList<Shift> shiftLog)
+        {
+            Name = name;
+            ShiftLog = shiftLog;
+        }
+
+        public int Id { get; set; }
         public string Name { get; set; }
-        public IList<DateTime> ShiftLog { get; }
+        public ICollection<Shift> ShiftLog { get; set; }
 
         public void LogTodaysShift()
         {
-            ShiftLog.Add(DateTime.Today);
+            ShiftLog.Add(new Shift() { Date = DateTime.Today });
         }
 
         public bool DidntHadShiftYesterday()
         {
             if (!ShiftLog.Any())
                 return true;
-            return (DateTime.Today - ShiftLog.OrderByDescending(d => d).First()).TotalDays > 1;
+            return (DateTime.Today - ShiftLog.OrderByDescending(d => d.Date).First().Date).TotalDays > 1;
         }
 
         public bool HadShiftYesterday()
@@ -37,15 +44,15 @@ namespace SupportWheelOfFate.Domain.Model
                 return false;
             if (HaveMoreThanOneShift())
                 return 
-                    IsDateWithinTwoWeeks(ShiftLog.OrderByDescending(d => d).Skip(1).First()) 
-                    && IsDateWithinTwoWeeks(ShiftLog.OrderByDescending(d => d).First());
+                    IsDateWithinTwoWeeks(ShiftLog.OrderByDescending(d => d.Date).Skip(1).First().Date) 
+                    && IsDateWithinTwoWeeks(ShiftLog.OrderByDescending(d => d.Date).First().Date);
             return false;
         }
 
         public bool HaveShiftToday()
         {
             if (ShiftLog.Any())
-                return ShiftLog.OrderByDescending(d => d).First() == DateTime.Today;
+                return ShiftLog.OrderByDescending(d => d.Date).First().Date == DateTime.Today;
             return false;
         }
 

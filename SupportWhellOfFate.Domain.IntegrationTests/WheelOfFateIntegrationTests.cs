@@ -17,22 +17,27 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
         public void SelectTodaysBauShift_Given_16Engineers_Returns_TwoEngineers()
         {
             //arrange
-            var engineer1WhoDidnHadShiftYesterday = new SupportEngineer();
-            engineer1WhoDidnHadShiftYesterday.ShiftLog.Add(DateTime.Today.AddDays(-2));
+            var engineer1WhoDidnHadShiftYesterday = new SupportEngineerBuilder()
+                .WithShiftLoggedFromNow(-2)
+                .Build();
 
-            var engineer2WhoDidnHadShiftYesterday = new SupportEngineer();
-            engineer2WhoDidnHadShiftYesterday.ShiftLog.Add(DateTime.Today.AddDays(-2));
+            var engineer2WhoDidnHadShiftYesterday = new SupportEngineerBuilder()
+                .WithShiftLoggedFromNow(-2)
+                .Build();
 
-            var engineerWhoHadShiftYesterday = new SupportEngineer();
-            engineerWhoHadShiftYesterday.ShiftLog.Add(DateTime.Today.AddDays(-1));
+            var engineerWhoHadShiftYesterday = new SupportEngineerBuilder()
+                .WithShiftLoggedFromNow(-1)
+                .Build();
 
-            var engineerWhoHadTwoShiftsInLastTwoWeeks = new SupportEngineer();
-            engineerWhoHadTwoShiftsInLastTwoWeeks.ShiftLog.Add(DateTime.Today.AddDays(-3));
-            engineerWhoHadTwoShiftsInLastTwoWeeks.ShiftLog.Add(DateTime.Today.AddDays(-12));
+            var engineerWhoHadTwoShiftsInLastTwoWeeks = new SupportEngineerBuilder()
+                .WithShiftLoggedFromNow(-3)
+                .WithShiftLoggedFromNow(-12)
+                .Build();
 
-            var engineer2WhoHadTwoShiftsInLastTwoWeeks = new SupportEngineer();
-            engineer2WhoHadTwoShiftsInLastTwoWeeks.ShiftLog.Add(DateTime.Today.AddDays(-5));
-            engineer2WhoHadTwoShiftsInLastTwoWeeks.ShiftLog.Add(DateTime.Today.AddDays(-11));
+            var engineer2WhoHadTwoShiftsInLastTwoWeeks = new SupportEngineerBuilder()
+                .WithShiftLoggedFromNow(-5)
+                .WithShiftLoggedFromNow(-11)
+                .Build();
 
             var engineers = new List<ISupportEngineer>()
             {

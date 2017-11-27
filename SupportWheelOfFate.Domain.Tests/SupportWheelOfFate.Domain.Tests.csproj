@@ -77,6 +77,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Builders\SupportEngineerBuilder.cs" />
     <Compile Include="Builders\SupportEngineerListBuilder.cs" />
     <Compile Include="Builders\WheelOfFateBuilder.cs" />
     <Compile Include="FilterChainFactoryTests.cs" />

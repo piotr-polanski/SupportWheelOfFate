@@ -66,6 +66,7 @@
     <Compile Include="IWheelOfFate.cs" />
     <Compile Include="Model\BauShift.cs" />
     <Compile Include="Model\ISupportEngineer.cs" />
+    <Compile Include="Model\Shift.cs" />
     <Compile Include="Model\SupportEngineer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\SupportEngineersRepository.cs" />
