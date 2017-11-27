@@ -30,5 +30,6 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
             A.CallTo(() => successor.Filter(A<IEnumerable<ISupportEngineer>>._))
                 .MustHaveHappened(Repeated.Exactly.Once);
         }
+
     }
 }

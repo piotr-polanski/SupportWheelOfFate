@@ -10,14 +10,23 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
         {
             Successor = successor;
         }
+
+        private bool shouldBrakeChain;
+
         public ISupportEngineersFilterChain Successor { get; }
 
         public IEnumerable<ISupportEngineer> Filter(IEnumerable<ISupportEngineer> supportEngineersToFilter)
         {
             var filteredEngineers = FilterEngineers(supportEngineersToFilter);
 
-            return Successor == null ? filteredEngineers : Successor.Filter(filteredEngineers);
+            return Successor == null || shouldBrakeChain ? filteredEngineers : Successor.Filter(filteredEngineers);
+        }
+
+        protected void BrakeTheChain()
+        {
+            shouldBrakeChain = true;
         }
         protected abstract IEnumerable<ISupportEngineer> FilterEngineers(IEnumerable<ISupportEngineer> supportEngineers);
+
     }
 }

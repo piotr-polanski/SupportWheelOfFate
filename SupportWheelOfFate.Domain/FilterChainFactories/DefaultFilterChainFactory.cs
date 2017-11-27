@@ -11,7 +11,10 @@ namespace SupportWheelOfFate.Domain.FilterChainFactories
             
             var engineersWhoDidntHadShiftYesterday = new EngineersWhoDidntHadShiftYesterdayFilter(randomFilter);
 
-            return new EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter(engineersWhoDidntHadShiftYesterday);
+            var engineersWhoDidntHadTwoShiftsInLastTwoWeeks  = 
+                new EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter(engineersWhoDidntHadShiftYesterday);
+            return new ShiftSelectedTodayFilter(engineersWhoDidntHadTwoShiftsInLastTwoWeeks);
+
         }
     }
 }

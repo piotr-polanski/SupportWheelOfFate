@@ -75,6 +75,7 @@
     <Compile Include="SupportEngineersFilters\ChooseTwoRandomEngineersFilter.cs" />
     <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadShiftYesterdayFilter.cs" />
     <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter.cs" />
+    <Compile Include="SupportEngineersFilters\ShiftSelectedTodayFilter.cs" />
     <Compile Include="SupportEngineersFilters\SupportEngineerFilterChain.cs" />
     <Compile Include="WheelOfFate.cs" />
   </ItemGroup>

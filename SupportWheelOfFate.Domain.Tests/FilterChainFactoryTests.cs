@@ -17,10 +17,11 @@ namespace SupportWheelOfFate.Domain.Tests
             var filterChain = sut.Create();
 
             //assert
-            filterChain.ShouldBeOfType<EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter>();
-            filterChain.Successor.ShouldBeOfType<EngineersWhoDidntHadShiftYesterdayFilter>();
-            filterChain.Successor.Successor.ShouldBeOfType<ChooseTwoRandomEngineersFilter>();
-            filterChain.Successor.Successor.Successor.ShouldBeNull();
+            filterChain.ShouldBeOfType<ShiftSelectedTodayFilter>();
+            filterChain.Successor.ShouldBeOfType<EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter>();
+            filterChain.Successor.Successor.ShouldBeOfType<EngineersWhoDidntHadShiftYesterdayFilter>();
+            filterChain.Successor.Successor.Successor.ShouldBeOfType<ChooseTwoRandomEngineersFilter>();
+            filterChain.Successor.Successor.Successor.Successor.ShouldBeNull();
         }
     }
 }

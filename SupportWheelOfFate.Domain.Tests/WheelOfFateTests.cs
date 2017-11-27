@@ -102,27 +102,5 @@ namespace SupportWheelOfFate.Domain.Tests
                 .MustHaveHappened(Repeated.Exactly.Once);
         }
 
-        [Fact]
-        public void SelectTodayBauShift_If_BauShiftWasAlreadyChosen_Return_TodaysBauShift()
-        {
-            //arrange
-            var engineersFromRepo = new SupportEngineerListBuilder()
-                .WithEngineersAlreadySelectedForToday(2)
-                .WihtEngineersWhoDidntHadTwoShiftInLastTwoWeeks(5)
-                .Build();
-            var sut = new WheelOfFateBuilder()
-                .WithEngineersFromRepo(engineersFromRepo)
-                .Build();
-
-            //act
-            var bauShift = sut.SelectTodaysBauShift();
-
-            //assert
-            bauShift.MorningShiftEngineer.Name.ShouldBe
-                (nameof(SupportEngineerListBuilder.WithEngineersAlreadySelectedForToday));
-            bauShift.AfterNoonShiftEngineer.Name.ShouldBe
-                (nameof(SupportEngineerListBuilder.WithEngineersAlreadySelectedForToday));
-
-        }
     }
 }
