@@ -50,7 +50,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
 
             var supportEngineerRepository = A.Fake<ISupportEngineersRepository>();
             var supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
-            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers(A<IEnumerable<SupportEngineerDto>>._))
+            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers())
                 .Returns(engineers);
 
             //var supportEngineersFactory = new SupportEngineers
@@ -90,7 +90,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             ISupportEngineersFactory supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
 
             ISupportEngineersRepository supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
-            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers(A<IEnumerable<SupportEngineerDto>>._))
+            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers())
                 .Returns(tenSupportEngineersWithouthShifts);
             var sut = new WheelOfFate(supportEngineersRepository, supportEngineersFactory, new DefaultSupportEngineerFilterChainFactory());
 

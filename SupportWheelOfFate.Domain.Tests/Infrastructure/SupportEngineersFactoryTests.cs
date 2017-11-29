@@ -18,10 +18,14 @@ namespace SupportWheelOfFate.Domain.Tests.Infrastructure
             var fixture = new Fixture();
             var supportEngineerDto = fixture.CreateMany<SupportEngineerDto>();
 
-            var sut = new SupportEngineersFactory(null, null);
+            var supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
+            A.CallTo(() => supportEngineersRepository.GetEngineerDtos())
+                .Returns(supportEngineerDto);
+
+            var sut = new SupportEngineersFactory(supportEngineersRepository, null);
 
             //act
-            var supportEngineers = sut.CreteSupportEngineers(supportEngineerDto);
+            var supportEngineers = sut.CreteSupportEngineers();
 
             //assert
             supportEngineers.Count().ShouldBe(supportEngineerDto.Count());

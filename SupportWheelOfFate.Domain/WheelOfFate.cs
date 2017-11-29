@@ -23,9 +23,7 @@ namespace SupportWheelOfFate.Domain
 
         public BauShift SelectTodaysBauShift()
         {
-            var engineerDtos = _supportEngineersRepository.GetEngineerDtos();
-
-            var avaliableEngineers = _supportEngineersFactory.CreteSupportEngineers(engineerDtos);
+            var avaliableEngineers = _supportEngineersFactory.CreteSupportEngineers();
 
             var engineersFilterChain = _supportEngineersFilterChainFactory.Create();
 

@@ -16,8 +16,9 @@ namespace SupportWheelOfFate.Domain.Infrastructure
             _supportEngineersRepository = supportEngineersRepository;
             _calendar = calendar;
         }
-        public IEnumerable<ISupportEngineer> CreteSupportEngineers(IEnumerable<SupportEngineerDto> engineerDtos)
+        public IEnumerable<ISupportEngineer> CreteSupportEngineers()
         {
+            var engineerDtos = _supportEngineersRepository.GetEngineerDtos();
             return engineerDtos.Select(dto => new SupportEngineer(_calendar, dto));
         }
     }

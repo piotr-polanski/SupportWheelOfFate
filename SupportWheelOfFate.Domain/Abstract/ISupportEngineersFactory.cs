@@ -6,6 +6,6 @@ namespace SupportWheelOfFate.Domain.Abstract
 {
     public interface ISupportEngineersFactory
     {
-        IEnumerable<ISupportEngineer> CreteSupportEngineers(IEnumerable<SupportEngineerDto> engineerDtos);
+        IEnumerable<ISupportEngineer> CreteSupportEngineers();
     }
 }
