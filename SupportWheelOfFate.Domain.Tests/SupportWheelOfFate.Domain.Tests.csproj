@@ -80,6 +80,7 @@
     <Compile Include="Builders\SupportEngineerBuilder.cs" />
     <Compile Include="Builders\SupportEngineerListBuilder.cs" />
     <Compile Include="Builders\WheelOfFateBuilder.cs" />
+    <Compile Include="CalendarTests.cs" />
     <Compile Include="DefaultSupportEngineerFilterChainFactoryTests.cs" />
     <Compile Include="Infrastructure\SupportEngineersFactoryTests.cs" />
     <Compile Include="Model\SupportEngineerTest.cs" />
