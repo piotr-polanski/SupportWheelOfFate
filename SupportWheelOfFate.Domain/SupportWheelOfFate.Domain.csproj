@@ -73,6 +73,7 @@
     <Compile Include="Model\Shift.cs" />
     <Compile Include="Model\SupportEngineer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\SupportEngineerDto.cs" />
     <Compile Include="Repository\SupportEngineersRepository.cs" />
     <Compile Include="Repository\WheelOfFateContext.cs" />
     <Compile Include="Repository\WheelOfFateInitializer.cs" />
