@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICalendar.cs" />
     <Compile Include="Abstract\ISupportEngineersFilterChain.cs" />
     <Compile Include="Abstract\ISupportEngineersRepository.cs" />
     <Compile Include="Exceptions\NotEnoughEngineersException.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadShiftYesterdayFilter.cs" />
     <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter.cs" />
     <Compile Include="SupportEngineersFilters\LogShiftForSelectedEngineersFilter.cs" />
+    <Compile Include="SupportEngineersFilters\PreferEngineersWhoDidintHadShiftInLastWeekFilter.cs" />
     <Compile Include="SupportEngineersFilters\ShiftSelectedTodayFilter.cs" />
     <Compile Include="SupportEngineersFilters\SupportEngineerFilterChain.cs" />
     <Compile Include="WheelOfFate.cs" />

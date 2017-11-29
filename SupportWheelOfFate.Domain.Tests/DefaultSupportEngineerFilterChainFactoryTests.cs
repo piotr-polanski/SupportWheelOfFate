@@ -18,12 +18,13 @@ namespace SupportWheelOfFate.Domain.Tests
 
             //assert
             filterChain.ShouldBeOfType<ShiftSelectedTodayFilter>();
-            filterChain.Successor.ShouldBeOfType<EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter>();
-            filterChain.Successor.Successor.ShouldBeOfType<EngineersWhoDidntHadShiftYesterdayFilter>();
-            filterChain.Successor.Successor.Successor.ShouldBeOfType<ChooseTwoRandomEngineersFilter>();
-            filterChain.Successor.Successor.Successor.Successor
+            filterChain.Successor.ShouldBeOfType<PreferEngineersWhoDidintHadShiftInLastWeekFilter>();
+            filterChain.Successor.Successor.ShouldBeOfType<EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter>();
+            filterChain.Successor.Successor.Successor.ShouldBeOfType<EngineersWhoDidntHadShiftYesterdayFilter>();
+            filterChain.Successor.Successor.Successor.Successor.ShouldBeOfType<ChooseTwoRandomEngineersFilter>();
+            filterChain.Successor.Successor.Successor.Successor.Successor
                 .ShouldBeOfType<LogShiftForSelectedEngineersFilter>();
-            filterChain.Successor.Successor.Successor.Successor.Successor.ShouldBeNull();
+            filterChain.Successor.Successor.Successor.Successor.Successor.Successor.ShouldBeNull();
         }
     }
 }

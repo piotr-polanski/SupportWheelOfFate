@@ -7,7 +7,7 @@ using SupportWheelOfFate.Domain.Model;
 
 namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 {
-    internal abstract class SupportEngineerFilterChain : ISupportEngineersFilterChain
+    public abstract class SupportEngineerFilterChain : ISupportEngineersFilterChain
     {
         protected SupportEngineerFilterChain(ISupportEngineersFilterChain successor)
         {

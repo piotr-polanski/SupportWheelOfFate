@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using FakeItEasy;
 using Shouldly;
+using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.Model;
 using Xunit;
 using SupportWheelOfFate.Domain.Tests.Builders;
@@ -82,7 +84,8 @@ namespace SupportWheelOfFate.Domain.Tests.Model
         }
 
         [Theory, MemberData("DatesTwoWeeksAgo")]
-        public void DidntHadTwoShiftsInLastTwoWeeks_When_InFactHeDidntHad_Return_True(DateTime someDate, DateTime someOtherDate)
+        public void DidntHadTwoShiftsInLastTwoWeeks_When_InFactHeDidntHad_Return_True(DateTime someDate,
+            DateTime someOtherDate)
         {
             //arrange
             var sut = new SupportEngineerBuilder()
@@ -178,6 +181,52 @@ namespace SupportWheelOfFate.Domain.Tests.Model
 
             //assert
             result.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void DidntHadShiftInLastFiveDays_Given_HeDidntHadAnyShift_Return_True()
+        {
+            //arrange
+            var sut = new SupportEngineerBuilder()
+                .Build();
+
+            //act
+            var result = sut.DidntHadShiftInLastWeek();
+
+            //assert
+            result.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void DidntHadShiftInLastFiveDays_Given_HeDidntHad_Return_True()
+        {
+            //arrange
+            var sut = new SupportEngineerBuilder()
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-8))
+                .Build();
+
+            //act
+            var result = sut.DidntHadShiftInLastWeek();
+
+            //assert
+            result.ShouldBeTrue();
+
+        }
+
+        [Fact]
+        public void DidntHadShiftInLastFiveDays_Given_HeHad_Return_False()
+        {
+            //arrange
+            var sut = new SupportEngineerBuilder()
+                .WithShiftLoggedOnDate(DateTime.Today.AddDays(-7))
+                .Build();
+
+            //act
+            var result = sut.DidntHadShiftInLastWeek();
+
+            //assert
+            result.ShouldBeFalse();
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using FakeItEasy;
 using Shouldly;
 using SupportWheelOfFate.Domain;
@@ -63,9 +64,53 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             bauShift.AfterNoonShiftEngineer.ShouldNotBeNull();
             //those two engineers had only one shift in shift log
             //we're checking if today shift was added to log
-            //thats why we know if they were selected
+            //thats how we know if they were selected
             bauShift.MorningShiftEngineer.ShiftLog.Count.ShouldBe(2);
             bauShift.AfterNoonShiftEngineer.ShiftLog.Count.ShouldBe(2);
+        }
+
+        [Theory]
+        [Repeat(100)]
+        public void SelectTodaysBauShift_Given_10ENgineersWith0Shifts_After10DaysOfShifts_EachEngineerHave2ShiftsLogged()
+        {
+            //arrange
+            int numberOfEngineers = 10;
+            int numberOfDays = 12;
+            ICalendar calendar = A.Fake<ICalendar>();
+            IList<ISupportEngineer> tenSupportEngineersWithouthShifts = new List<ISupportEngineer>();
+            for (int i = 0; i < numberOfEngineers; i++)
+            {
+                tenSupportEngineersWithouthShifts.Add(new SupportEngineerBuilder()
+                    .WihtDateProvider(calendar)
+                    .Build());
+            }
+            ISupportEngineersRepository supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
+            A.CallTo(() => supportEngineersRepository.GetEngineers())
+                .Returns(tenSupportEngineersWithouthShifts);
+            var sut = new WheelOfFate(supportEngineersRepository, new DefaultSupportEngineerFilterChainFactory());
+
+            //act
+            //at the beggining all engineers have 0 shifts
+            foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
+            {
+                supportEngineer.ShiftLog.Count.ShouldBe(0);
+            }
+;
+            //simulate ten days of shifts
+            for (int daysToAdd = 0; daysToAdd < numberOfDays; daysToAdd++)
+            {
+                //simulate weekend
+                if (daysToAdd == 5)
+                    daysToAdd = daysToAdd + 2;
+                A.CallTo(() => calendar.Today).Returns(DateTime.Today.AddDays(daysToAdd));
+                sut.SelectTodaysBauShift();
+            }
+
+            //assert
+            foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
+            {
+               supportEngineer.ShiftLog.Count.ShouldBe(2);
+            }
         }
 
     }

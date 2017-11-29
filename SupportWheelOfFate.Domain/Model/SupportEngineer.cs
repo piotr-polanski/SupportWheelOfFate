@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SupportWheelOfFate.Domain.Abstract;
 
 namespace SupportWheelOfFate.Domain.Model
 {
     public class SupportEngineer : ISupportEngineer
     {
+        private readonly ICalendar _calendar;
         private const int FourteenDays = 14;
 
-        internal SupportEngineer()
+        internal SupportEngineer(ICalendar calendar)
         {
+            this._calendar = calendar;
         }
 
         internal SupportEngineer(string name, IList<Shift> shiftLog)
@@ -24,19 +27,19 @@ namespace SupportWheelOfFate.Domain.Model
 
         public void LogTodaysShift()
         {
-            ShiftLog.Add(new Shift() { Date = DateTime.Today });
+            ShiftLog.Add(new Shift() { Date = _calendar.Today});
         }
 
         public bool DidntHadShiftYesterday()
         {
-            if (!ShiftLog.Any())
-                return true;
-            return (DateTime.Today - ShiftLog.OrderByDescending(d => d.Date).First().Date).TotalDays > 1;
+            return !HadShiftYesterday();
         }
 
         public bool HadShiftYesterday()
         {
-            return !DidntHadShiftYesterday();
+            if (DidntHadAnyShifts())
+                return false;
+            return (_calendar.Today.AddDays(-1) == ShiftLog.OrderByDescending(d => d.Date).First().Date);
         }
         public bool HadTwoShiftsInLastTwoWeeks()
         {
@@ -52,8 +55,15 @@ namespace SupportWheelOfFate.Domain.Model
         public bool HaveShiftToday()
         {
             if (ShiftLog.Any())
-                return ShiftLog.OrderByDescending(d => d.Date).First().Date == DateTime.Today;
+                return ShiftLog.OrderByDescending(d => d.Date).First().Date == _calendar.Today;
             return false;
+        }
+
+        public bool DidntHadShiftInLastWeek()
+        {
+            if (DidntHadAnyShifts())
+                return true;
+            return ShiftLog.OrderByDescending(d => d.Date).First().Date < _calendar.Today.AddDays(-7);
         }
 
         public bool DidntHadTwoShiftInLastTwoWeeks()

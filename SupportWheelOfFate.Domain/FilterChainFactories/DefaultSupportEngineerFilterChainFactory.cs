@@ -8,12 +8,12 @@ namespace SupportWheelOfFate.Domain.FilterChainFactories
     {
         public ISupportEngineersFilterChain Create()
         {
-            var logShiftFilter = new LogShiftForSelectedEngineersFilter();
-            var randomFilter = new ChooseTwoRandomEngineersFilter(logShiftFilter);
-            var engineersWhoDidntHadShiftYesterday = new EngineersWhoDidntHadShiftYesterdayFilter(randomFilter);
-            var engineersWhoDidntHadTwoShiftsInLastTwoWeeks  = 
-                new EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter(engineersWhoDidntHadShiftYesterday);
-            return new ShiftSelectedTodayFilter(engineersWhoDidntHadTwoShiftsInLastTwoWeeks);
+            return new ShiftSelectedTodayFilter(
+                new PreferEngineersWhoDidintHadShiftInLastWeekFilter(
+                    new EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter(
+                        new EngineersWhoDidntHadShiftYesterdayFilter(
+                            new ChooseTwoRandomEngineersFilter(
+                                new LogShiftForSelectedEngineersFilter())))));
 
         }
     }

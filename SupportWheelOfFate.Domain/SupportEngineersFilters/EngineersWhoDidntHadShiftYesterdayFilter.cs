@@ -22,8 +22,7 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 
         protected override IEnumerable<ISupportEngineer> FilterEngineers(IEnumerable<ISupportEngineer> supportEngineersToFilter)
         {
-            return supportEngineersToFilter
-                .Where(se => se.DidntHadShiftYesterday());
+            return supportEngineersToFilter.Where(se => se.DidntHadShiftYesterday());
         }
     }
 }
