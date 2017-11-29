@@ -12,7 +12,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_SelectedEngineers_Then_LogShifForThem()
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WithEngineersAlreadySelectedForToday(2)
                 .Build();
             var sut = new LogShiftForSelectedEngineersFilter();

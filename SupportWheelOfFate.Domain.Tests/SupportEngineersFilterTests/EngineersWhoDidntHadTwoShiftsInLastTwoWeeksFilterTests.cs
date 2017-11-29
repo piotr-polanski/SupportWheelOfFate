@@ -12,7 +12,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_SupportEngineersWhoDidntHaveShiftInLastTwoWeeks_Retrun_AllGivenEngineers()
         {
             //arrange
-            var engineersWheDidntHaveShiftInLastTwoWees = new SupportEngineerListBuilder()
+            var engineersWheDidntHaveShiftInLastTwoWees = new SupportEngineerMocksBuilder()
                 .WihtEngineersWhoDidntHadTwoShiftInLastTwoWeeks(5)
                 .Build();
             var sut = new EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter();
@@ -28,7 +28,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_SupportEngineersWhoHadShiftInLastTwoWeeks_Retrun_EmptyCollection()
         {
             //arrange
-            var engineersWheDidntHaveShiftInLastTwoWees = new SupportEngineerListBuilder()
+            var engineersWheDidntHaveShiftInLastTwoWees = new SupportEngineerMocksBuilder()
                 .WihtEngineersWhoHadTwoShiftInLastTwoWeeks(5)
                 .Build();
             var sut = new EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter();
@@ -44,7 +44,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_SupportEngineers_Retrun_OnlyThoseWheDidntHadTwoShiftsInLastTwoWeeks()
         {
             //arrange
-            var engineersWheDidntHaveShiftInLastTwoWees = new SupportEngineerListBuilder()
+            var engineersWheDidntHaveShiftInLastTwoWees = new SupportEngineerMocksBuilder()
                 .WihtEngineersWhoHadTwoShiftInLastTwoWeeks(5)
                 .WihtEngineersWhoDidntHadTwoShiftInLastTwoWeeks(12)
                 .Build();

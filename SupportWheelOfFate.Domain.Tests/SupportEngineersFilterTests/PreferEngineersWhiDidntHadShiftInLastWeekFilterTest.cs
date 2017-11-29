@@ -12,7 +12,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_EngineersWhoDidntHadShiftInLastFiveDays_Return_GivenEngineers()
         {
             //arrange
-            var engineersWhiDidntHadShiftInLastFiveDays = new SupportEngineerListBuilder()
+            var engineersWhiDidntHadShiftInLastFiveDays = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoDidntHadShiftInLastWeek(5)
                 .Build();
 
@@ -29,7 +29,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_TwoEngineersWhoDidntHadShiftInLastWeek_And_FourEngineersWhoHad_Retrun_TwoWhoDidntHad()
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoDidntHadShiftInLastWeek(2)
                 .WihtEngineersWhoHadShiftInLastWeeks(4)
                 .Build();
@@ -42,7 +42,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
             //assert
             result.Count().ShouldBe(2);
             result.Count(se => 
-                se.Name == nameof(SupportEngineerListBuilder.WithEngineersWhoDidntHadShiftInLastWeek))
+                se.Name == nameof(SupportEngineerMocksBuilder.WithEngineersWhoDidntHadShiftInLastWeek))
             .ShouldBe(2);
         }
     }

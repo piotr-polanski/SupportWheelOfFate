@@ -42,7 +42,7 @@ namespace SupportWheelOfFate.Domain.Tests
         public void SelectTodaysBAUShift_Returns_BauShiftWithFirstAndLastFromFilteredOutEngineers()
         {
             //arrange
-            var supportEngineersFromFilter = new SupportEngineerListBuilder()
+            var supportEngineersFromFilter = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoDidntHadShiftYesterday(2)
                 .Build();
             WheelOfFate sut = new WheelOfFateBuilder()

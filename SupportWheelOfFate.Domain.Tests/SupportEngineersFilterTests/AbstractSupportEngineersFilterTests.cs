@@ -15,7 +15,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_MoreThanTwoEngineersAndSuccessor_Calls_Successor()
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoHadShiftYesterday(10)
                 .Build();
             var successor = A.Fake<ISupportEngineersFilterChain>();

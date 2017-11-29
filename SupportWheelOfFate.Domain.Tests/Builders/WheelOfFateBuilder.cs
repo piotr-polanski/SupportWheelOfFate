@@ -20,10 +20,10 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
         {
             _supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
             _supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
-            _supportEngineersFromRepo = new SupportEngineerListBuilder()
+            _supportEngineersFromRepo = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoHadShiftYesterday(5)
                 .Build();
-            _supportEngineersAfterFilter = new SupportEngineerListBuilder()
+            _supportEngineersAfterFilter = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoDidntHadShiftYesterday(5)
                 .Build();
             _supportEngineerFilterChainFactory = A.Fake<ISupportEngineerFilterChainFactory>();

@@ -78,7 +78,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Builders\SupportEngineerBuilder.cs" />
-    <Compile Include="Builders\SupportEngineerListBuilder.cs" />
+    <Compile Include="Builders\SupportEngineerMocksBuilder.cs" />
     <Compile Include="Builders\WheelOfFateBuilder.cs" />
     <Compile Include="CalendarTests.cs" />
     <Compile Include="DefaultSupportEngineerFilterChainFactoryTests.cs" />

@@ -13,7 +13,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_MoreThanOneEngineer_Returns_TwoRandomEngineers()
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoDidntHadShiftYesterday(2)
                 .Build();
             var sut = new ChooseTwoRandomEngineersFilter();
@@ -32,7 +32,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_LessThanTwoEngineers_Throws_NotEnoughEngineersException(int engineersNumber)
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoDidntHadShiftYesterday(engineersNumber)
                 .Build();
             var sut = new ChooseTwoRandomEngineersFilter();

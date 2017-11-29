@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FakeItEasy;
-using Ploeh.AutoFixture;
 using SupportWheelOfFate.Domain.Model;
 
 namespace SupportWheelOfFate.Domain.Tests.Builders
 {
-    public class SupportEngineerListBuilder
+    public class SupportEngineerMocksBuilder
     {
         private IList<ISupportEngineer> engineersWhoDidntHadShiftYesterday;
         private IList<ISupportEngineer> engineersWhoHadShiftYesterday;
@@ -16,7 +15,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
         private IList<ISupportEngineer> engineersWhoDidntHadShiftInLastWeek;
         private IList<ISupportEngineer> engineersWhoHadShiftInLastWeek;
 
-        public SupportEngineerListBuilder()
+        public SupportEngineerMocksBuilder()
         {
             engineersWhoDidntHadShiftYesterday = new List<ISupportEngineer>();
             engineersWhoHadShiftYesterday = new List<ISupportEngineer>();
@@ -38,7 +37,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
                 .Concat(engineersWhoHadShiftInLastWeek);
         }
 
-        public SupportEngineerListBuilder WithEngineersWhoDidntHadShiftYesterday(int engineersNumber)
+        public SupportEngineerMocksBuilder WithEngineersWhoDidntHadShiftYesterday(int engineersNumber)
         {
             for (int i = 0; i < engineersNumber; i++)
             {
@@ -49,7 +48,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             }
             return this;
         }
-        public SupportEngineerListBuilder WihtEngineersWhoDidntHadTwoShiftInLastTwoWeeks(int engineersNumber)
+        public SupportEngineerMocksBuilder WihtEngineersWhoDidntHadTwoShiftInLastTwoWeeks(int engineersNumber)
         {
             for (int i = 0; i < engineersNumber; i++)
             {
@@ -60,7 +59,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             }
             return this;
         }
-        public SupportEngineerListBuilder WihtEngineersWhoHadTwoShiftInLastTwoWeeks(int engineersNumber)
+        public SupportEngineerMocksBuilder WihtEngineersWhoHadTwoShiftInLastTwoWeeks(int engineersNumber)
         {
             for (int i = 0; i < engineersNumber; i++)
             {
@@ -72,7 +71,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             return this;
         }
 
-        public SupportEngineerListBuilder WithEngineersWhoHadShiftYesterday(int engineersNumber)
+        public SupportEngineerMocksBuilder WithEngineersWhoHadShiftYesterday(int engineersNumber)
         {
 
             for (int i = 0; i < engineersNumber; i++)
@@ -84,7 +83,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             }
             return this;
         }
-        public SupportEngineerListBuilder WithEngineersAlreadySelectedForToday(int engineersNumber)
+        public SupportEngineerMocksBuilder WithEngineersAlreadySelectedForToday(int engineersNumber)
         {
             for (int i = 0; i < engineersNumber; i++)
             {
@@ -98,7 +97,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             return this;
         }
 
-        public SupportEngineerListBuilder WithEngineersWhoDidntHadShiftInLastWeek(int engineersNumber)
+        public SupportEngineerMocksBuilder WithEngineersWhoDidntHadShiftInLastWeek(int engineersNumber)
         {
             for (int i = 0; i < engineersNumber; i++)
             {
@@ -112,7 +111,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             return this;
         }
 
-        public SupportEngineerListBuilder WihtEngineersWhoHadShiftInLastWeeks(int engineersNumber)
+        public SupportEngineerMocksBuilder WihtEngineersWhoHadShiftInLastWeeks(int engineersNumber)
         {
             for (int i = 0; i < engineersNumber; i++)
             {

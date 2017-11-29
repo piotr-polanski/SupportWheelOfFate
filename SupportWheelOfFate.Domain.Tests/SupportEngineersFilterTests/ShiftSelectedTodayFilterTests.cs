@@ -17,7 +17,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
             Filter_Given_MoreThanTwoEngineersAndSuccessor_When_ShiftWasAlreadySelectedToday_SuccessorIsNotCalled()
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoDidntHadShiftYesterday(8)
                 .WithEngineersAlreadySelectedForToday(2)
                 .Build();
@@ -39,7 +39,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
             Filter_Given_MoreThanTwoEngineersAndSuccessor_When_ShiftWasAlreadySelectedToday_Return_AlreadySelectedEngineers()
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WithEngineersWhoDidntHadShiftYesterday(8)
                 .WithEngineersAlreadySelectedForToday(2)
                 .Build();
@@ -53,16 +53,16 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
 
             //assert
             result.First().Name
-                .ShouldBe(nameof(SupportEngineerListBuilder.WithEngineersAlreadySelectedForToday));
+                .ShouldBe(nameof(SupportEngineerMocksBuilder.WithEngineersAlreadySelectedForToday));
             result.Last().Name
-                .ShouldBe(nameof(SupportEngineerListBuilder.WithEngineersAlreadySelectedForToday));
+                .ShouldBe(nameof(SupportEngineerMocksBuilder.WithEngineersAlreadySelectedForToday));
         }
 
         [Fact]
         public void Filter_Given_10Engineers_When_ShiftWasntSelectedToday_Return_AllGivenEngineers()
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WihtEngineersWhoDidntHadTwoShiftInLastTwoWeeks(10)
                 .Build();
 
@@ -79,7 +79,7 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_10Engineers_When_ShiftWasntSelectedToday_Then_CallSuccessor()
         {
             //arrange
-            var engineers = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerMocksBuilder()
                 .WihtEngineersWhoDidntHadTwoShiftInLastTwoWeeks(10)
                 .Build();
             var successor = A.Fake<ISupportEngineersFilterChain>();
