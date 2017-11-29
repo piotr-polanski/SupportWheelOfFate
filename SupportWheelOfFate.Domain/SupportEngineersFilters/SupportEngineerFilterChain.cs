@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using EnsureThat;
 using SupportWheelOfFate.Domain.Abstract;
+using SupportWheelOfFate.Domain.Exceptions;
 using SupportWheelOfFate.Domain.Model;
 
 namespace SupportWheelOfFate.Domain.SupportEngineersFilters
@@ -17,9 +20,22 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 
         public IEnumerable<ISupportEngineer> Filter(IEnumerable<ISupportEngineer> supportEngineersToFilter)
         {
+            ValidateSupportEngineers(supportEngineersToFilter);
+
             var filteredEngineers = FilterEngineers(supportEngineersToFilter);
 
             return Successor == null || shouldBrakeChain ? filteredEngineers : Successor.Filter(filteredEngineers);
+        }
+
+        private static void ValidateSupportEngineers(IEnumerable<ISupportEngineer> supportEngineersToFilter)
+        {
+            Ensure.That(supportEngineersToFilter, nameof(supportEngineersToFilter))
+                .WithException(e => new NotEnoughEngineersException("Provided engineers list is null"))
+                .IsNotNull();
+
+            Ensure.That(supportEngineersToFilter.Count(), nameof(supportEngineersToFilter))
+                .WithException(e => new NotEnoughEngineersException("There is not enough avaliable engineers for BAU shift"))
+                .IsGt(1);
         }
 
         protected void BrakeTheChain()

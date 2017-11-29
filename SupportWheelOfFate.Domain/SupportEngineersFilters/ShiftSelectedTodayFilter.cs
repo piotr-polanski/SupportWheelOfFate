@@ -17,13 +17,13 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 
         protected override IEnumerable<ISupportEngineer> FilterEngineers(IEnumerable<ISupportEngineer> supportEngineers)
         {
-            var existingTodaysShift =
+            var todaysShift =
                 supportEngineers.Where(e => e.HaveShiftToday());
 
-            if (existingTodaysShift.Any())
+            if (todaysShift.Any())
             {
                 BrakeTheChain();
-                return existingTodaysShift;
+                return todaysShift;
             }
             return supportEngineers;
         }
