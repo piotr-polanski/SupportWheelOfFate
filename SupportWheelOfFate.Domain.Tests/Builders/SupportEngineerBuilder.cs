@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using FakeItEasy;
 using SupportWheelOfFate.Domain.Abstract;
+using SupportWheelOfFate.Domain.Repository;
 
 namespace SupportWheelOfFate.Domain.Tests.Builders
 {
@@ -19,8 +20,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
 
         public SupportEngineer Build()
         {
-            var supportEngineer = new SupportEngineer(_calendar);
-            supportEngineer.ShiftLog = shiftLog;
+            var supportEngineer = new SupportEngineer(_calendar, new SupportEngineerDto("name", shiftLog));
             return supportEngineer;
         }
 

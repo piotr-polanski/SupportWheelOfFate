@@ -17,11 +17,11 @@ namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 
         protected override IEnumerable<ISupportEngineer> FilterEngineers(IEnumerable<ISupportEngineer> supportEngineers)
         {
-            var engineersWhoDidntHadShiftInLastFiveDays =
+            var engineersWhoDidntHadShiftInLastWeek =
                 supportEngineers.Where(se => se.DidntHadShiftInLastWeek());
-            if (engineersWhoDidntHadShiftInLastFiveDays.Count() > 1)
+            if (engineersWhoDidntHadShiftInLastWeek.Count() > 1)
             {
-                return engineersWhoDidntHadShiftInLastFiveDays;
+                return engineersWhoDidntHadShiftInLastWeek;
             }
 
             return supportEngineers;

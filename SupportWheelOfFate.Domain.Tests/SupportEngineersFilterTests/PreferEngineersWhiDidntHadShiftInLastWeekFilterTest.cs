@@ -29,15 +29,15 @@ namespace SupportWheelOfFate.Domain.Tests.SupportEngineersFilterTests
         public void Filter_Given_TwoEngineersWhoDidntHadShiftInLastWeek_And_FourEngineersWhoHad_Retrun_TwoWhoDidntHad()
         {
             //arrange
-            var engineersWhiDidntHadShiftInLastFiveDays = new SupportEngineerListBuilder()
+            var engineers = new SupportEngineerListBuilder()
                 .WithEngineersWhoDidntHadShiftInLastWeek(2)
-                .WithEngineersWhoHadShiftYesterday(4)
+                .WihtEngineersWhoHadShiftInLastWeeks(4)
                 .Build();
 
             var sut = new PreferEngineersWhoDidintHadShiftInLastWeekFilter();
 
             //act
-            var result = sut.Filter(engineersWhiDidntHadShiftInLastFiveDays);
+            var result = sut.Filter(engineers);
 
             //assert
             result.Count().ShouldBe(2);

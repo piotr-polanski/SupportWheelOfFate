@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using FakeItEasy;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
+using SupportWheelOfFate.Domain.Repository;
 
 namespace SupportWheelOfFate.Domain.Tests.Builders
 {
@@ -10,12 +12,14 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
     {
         private IEnumerable<ISupportEngineer> _supportEngineersFromRepo;
         private IEnumerable<ISupportEngineer> _supportEngineersAfterFilter;
-        private ISupportEngineersRepository _supportEngineersRepository;
+        private ISupportEngineersFactory _supportEngineersFactory;
         private readonly ISupportEngineerFilterChainFactory _supportEngineerFilterChainFactory;
+        private ISupportEngineersRepository _supportEngineersRepository;
 
         public WheelOfFateBuilder()
         {
             _supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
+            _supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
             _supportEngineersFromRepo = new SupportEngineerListBuilder()
                 .WithEngineersWhoHadShiftYesterday(5)
                 .Build();
@@ -37,15 +41,15 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             return this;
         }
 
-        public WheelOfFateBuilder WihtSupportEngineersRpository(ISupportEngineersRepository supportEngineersRepository)
+        public WheelOfFateBuilder WihtSupportEngineersFactory(ISupportEngineersFactory supportEngineersRepository)
         {
-            _supportEngineersRepository = supportEngineersRepository;
+            _supportEngineersFactory = supportEngineersRepository;
             return this;
         }
 
         public WheelOfFate Build()
         {
-            A.CallTo(() => _supportEngineersRepository.GetEngineers())
+            A.CallTo(() => _supportEngineersFactory.CreteSupportEngineers(A<IEnumerable<SupportEngineerDto>>._))
                 .Returns(_supportEngineersFromRepo);
 
             var engineersFilterChain = A.Fake<ISupportEngineersFilterChain>();
@@ -55,8 +59,13 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
             A.CallTo(() => _supportEngineerFilterChainFactory.Create())
                 .Returns(engineersFilterChain);
 
-            return new WheelOfFate(_supportEngineersRepository, _supportEngineerFilterChainFactory);
+            return new WheelOfFate(_supportEngineersRepository, _supportEngineersFactory, _supportEngineerFilterChainFactory);
         }
 
+        public WheelOfFateBuilder WithSupportEngineersRepository(ISupportEngineersRepository supportEngineersRepository)
+        {
+            _supportEngineersRepository = supportEngineersRepository;
+            return this;
+        }
     }
 }

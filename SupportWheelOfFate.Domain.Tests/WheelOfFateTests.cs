@@ -62,9 +62,11 @@ namespace SupportWheelOfFate.Domain.Tests
         public void SelectTodaysBauShift_CallsSaveOnEngineersRepository()
         {
             //arrange
+            var supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
             var supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
             var sut = new WheelOfFateBuilder()
-                .WihtSupportEngineersRpository(supportEngineersRepository)
+                .WithSupportEngineersRepository(supportEngineersRepository)
+                .WihtSupportEngineersFactory(supportEngineersFactory)
                 .Build();
 
             //act

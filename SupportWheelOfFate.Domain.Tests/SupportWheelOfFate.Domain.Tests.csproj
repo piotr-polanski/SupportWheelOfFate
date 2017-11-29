@@ -81,6 +81,7 @@
     <Compile Include="Builders\SupportEngineerListBuilder.cs" />
     <Compile Include="Builders\WheelOfFateBuilder.cs" />
     <Compile Include="DefaultSupportEngineerFilterChainFactoryTests.cs" />
+    <Compile Include="Infrastructure\SupportEngineersFactoryTests.cs" />
     <Compile Include="Model\SupportEngineerTest.cs" />
     <Compile Include="SupportEngineersFilterTests\AbstractSupportEngineersFilterTests.cs" />
     <Compile Include="SupportEngineersFilterTests\ChooseTwoRandomEngineersFilterTests.cs" />

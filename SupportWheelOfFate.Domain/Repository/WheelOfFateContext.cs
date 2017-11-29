@@ -9,6 +9,6 @@ namespace SupportWheelOfFate.Domain.Repository
         {
             Database.SetInitializer(new WheelOfFateInitializer()); 
         }
-        public DbSet<SupportEngineer> SuportEngineers {get; set; }
+        public DbSet<SupportEngineerDto> SuportEngineers {get; set; }
     }
 }

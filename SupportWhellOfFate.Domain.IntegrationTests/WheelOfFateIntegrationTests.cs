@@ -7,6 +7,7 @@ using SupportWheelOfFate.Domain;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
+using SupportWheelOfFate.Domain.Repository;
 using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;
 
@@ -48,12 +49,14 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             };
 
             var supportEngineerRepository = A.Fake<ISupportEngineersRepository>();
-            A.CallTo(() => supportEngineerRepository.GetEngineers())
+            var supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
+            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers(A<IEnumerable<SupportEngineerDto>>._))
                 .Returns(engineers);
 
+            //var supportEngineersFactory = new SupportEngineers
             var filterChainFactory = new DefaultSupportEngineerFilterChainFactory();
 
-            var sut = new WheelOfFate(supportEngineerRepository, filterChainFactory);
+            var sut = new WheelOfFate(supportEngineerRepository, supportEngineersFactory, filterChainFactory);
 
             //act
             var bauShift = sut.SelectTodaysBauShift();
@@ -84,10 +87,12 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
                     .WihtDateProvider(calendar)
                     .Build());
             }
+            ISupportEngineersFactory supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
+
             ISupportEngineersRepository supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
-            A.CallTo(() => supportEngineersRepository.GetEngineers())
+            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers(A<IEnumerable<SupportEngineerDto>>._))
                 .Returns(tenSupportEngineersWithouthShifts);
-            var sut = new WheelOfFate(supportEngineersRepository, new DefaultSupportEngineerFilterChainFactory());
+            var sut = new WheelOfFate(supportEngineersRepository, supportEngineersFactory, new DefaultSupportEngineerFilterChainFactory());
 
             //act
             //at the beggining all engineers have 0 shifts

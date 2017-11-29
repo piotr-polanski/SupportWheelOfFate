@@ -14,7 +14,7 @@ namespace SupportWheelOfFate.Domain.Repository
         {
             _wheelOfFateContext = wheelOfFateContext;
         }
-        public IEnumerable<ISupportEngineer> GetEngineers()
+        public IEnumerable<SupportEngineerDto> GetEngineerDtos()
         {
             return _wheelOfFateContext.SuportEngineers
                 .Include(e => e.ShiftLog)
@@ -25,5 +25,22 @@ namespace SupportWheelOfFate.Domain.Repository
         {
             _wheelOfFateContext.SaveChanges();
         }
+    }
+
+    public class SupportEngineerDto
+    {
+        public SupportEngineerDto()
+        {
+            
+        }
+        public SupportEngineerDto(string name, ICollection<Shift> shiftLog)
+        {
+            Name = name;
+            ShiftLog = shiftLog;
+        }
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public ICollection<Shift> ShiftLog { get; set; }
     }
 }

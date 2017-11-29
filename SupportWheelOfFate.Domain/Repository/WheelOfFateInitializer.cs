@@ -9,16 +9,16 @@ namespace SupportWheelOfFate.Domain.Repository
     {
         protected override void Seed(WheelOfFateContext context)
         {
-            context.SuportEngineers.Add(new SupportEngineer("John", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("Ben", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("Ian", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("Peter", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("George", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("Sam", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("Danny", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("Jo", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("Elliot", new List<Shift>()));
-            context.SuportEngineers.Add(new SupportEngineer("Rudolph", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("John", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("Ben", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("Ian", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("Peter", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("George", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("Sam", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("Danny", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("Jo", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("Elliot", new List<Shift>()));
+            context.SuportEngineers.Add(new SupportEngineerDto("Rudolph", new List<Shift>()));
             base.Seed(context);
         }
     }

@@ -2,28 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using SupportWheelOfFate.Domain.Abstract;
+using SupportWheelOfFate.Domain.Repository;
 
 namespace SupportWheelOfFate.Domain.Model
 {
     public class SupportEngineer : ISupportEngineer
     {
         private readonly ICalendar _calendar;
+        private readonly SupportEngineerDto _state;
         private const int FourteenDays = 14;
 
-        internal SupportEngineer(ICalendar calendar)
+        internal SupportEngineer(ICalendar calendar, SupportEngineerDto state)
         {
             this._calendar = calendar;
+            _state = state;
         }
 
-        internal SupportEngineer(string name, IList<Shift> shiftLog)
-        {
-            Name = name;
-            ShiftLog = shiftLog;
-        }
-
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public ICollection<Shift> ShiftLog { get; set; }
+        public int Id => _state.Id;
+        public string Name => _state.Name;
+        public ICollection<Shift> ShiftLog => _state.ShiftLog;
 
         public void LogTodaysShift()
         {

@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\ICalendar.cs" />
+    <Compile Include="Abstract\ISupportEngineersFactory.cs" />
     <Compile Include="Abstract\ISupportEngineersFilterChain.cs" />
     <Compile Include="Abstract\ISupportEngineersRepository.cs" />
     <Compile Include="Exceptions\NotEnoughEngineersException.cs" />
     <Compile Include="FilterChainFactories\DefaultSupportEngineerFilterChainFactory.cs" />
     <Compile Include="FilterChainFactories\ISupportEngineerFilterChainFactory.cs" />
+    <Compile Include="Infrastructure\SupportEngineersFactory.cs" />
     <Compile Include="IoC\WheelOfFateUnityRegistration.cs" />
     <Compile Include="IWheelOfFate.cs" />
     <Compile Include="Model\BauShift.cs" />
