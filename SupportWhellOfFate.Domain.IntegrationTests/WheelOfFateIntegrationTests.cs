@@ -16,6 +16,8 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
 {
     public class WheelOfFateIntegrationTests
     {
+        private readonly DefaultSupportEngineerFilterFactoryIntegrationTests _defaultSupportEngineerFilterFactoryIntegrationTests = new DefaultSupportEngineerFilterFactoryIntegrationTests();
+
         [Fact]
         public void SelectTodaysBauShift_Given_16Engineers_Returns_TwoEngineers()
         {
@@ -72,101 +74,5 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             bauShift.MorningShiftEngineer.ShiftLog.Count.ShouldBe(2);
             bauShift.AfterNoonShiftEngineer.ShiftLog.Count.ShouldBe(2);
         }
-
-        [Theory]
-        [Repeat(100)]
-        public void SelectTodaysBauShift_Given_10ENgineersWith0Shifts_After10DaysOfShifts_EachEngineerHave2ShiftsLogged()
-        {
-            //arrange
-            int numberOfEngineers = 10;
-            int numberOfDays = 12;
-            ICalendar calendar = A.Fake<ICalendar>();
-            IList<ISupportEngineer> tenSupportEngineersWithouthShifts = new List<ISupportEngineer>();
-            for (int i = 0; i < numberOfEngineers; i++)
-            {
-                tenSupportEngineersWithouthShifts.Add(new SupportEngineerBuilder()
-                    .WihtDateProvider(calendar)
-                    .Build());
-            }
-            ISupportEngineersFactory supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
-
-            ISupportEngineersRepository supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
-            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers())
-                .Returns(tenSupportEngineersWithouthShifts);
-            var sut = new WheelOfFate(supportEngineersRepository, supportEngineersFactory, new DefaultSupportEngineerFilterChainFactory());
-
-            //act
-            //at the beggining all engineers have 0 shifts
-            foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
-            {
-                supportEngineer.ShiftLog.Count.ShouldBe(0);
-            }
-;
-            //simulate ten days of shifts
-            for (int daysToAdd = 0; daysToAdd < numberOfDays; daysToAdd++)
-            {
-                //simulate weekend
-                if (daysToAdd == 5)
-                    daysToAdd = daysToAdd + 2;
-                A.CallTo(() => calendar.Today).Returns(DateTime.Today.AddDays(daysToAdd));
-                sut.SelectTodaysBauShift();
-            }
-
-            //assert
-            foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
-            {
-               supportEngineer.ShiftLog.Count.ShouldBe(2);
-            }
-        }
-
-        [Theory]
-        [Repeat(100)]
-        public void SelectTodaysBauShift_Given_10ENgineersWith0Shifts_After10DaysOfShifts_EachEngineerDidntHadShiftInTwoCosequentDays()
-        {
-            //arrange
-            int numberOfEngineers = 10;
-            int numberOfDays = 12;
-            ICalendar calendar = A.Fake<ICalendar>();
-            IList<ISupportEngineer> tenSupportEngineersWithouthShifts = new List<ISupportEngineer>();
-            for (int i = 0; i < numberOfEngineers; i++)
-            {
-                tenSupportEngineersWithouthShifts.Add(new SupportEngineerBuilder()
-                    .WihtDateProvider(calendar)
-                    .Build());
-            }
-            ISupportEngineersFactory supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
-
-            ISupportEngineersRepository supportEngineersRepository = A.Fake<ISupportEngineersRepository>();
-            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers())
-                .Returns(tenSupportEngineersWithouthShifts);
-            var sut = new WheelOfFate(supportEngineersRepository, supportEngineersFactory, new DefaultSupportEngineerFilterChainFactory());
-
-            //act
-            //at the beggining all engineers have 0 shifts
-            foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
-            {
-                supportEngineer.ShiftLog.Count.ShouldBe(0);
-            }
-            ;
-            //simulate ten days of shifts
-            for (int daysToAdd = 0; daysToAdd < numberOfDays; daysToAdd++)
-            {
-                //simulate weekend
-                if (daysToAdd == 5)
-                    daysToAdd = daysToAdd + 2;
-                A.CallTo(() => calendar.Today).Returns(DateTime.Today.AddDays(daysToAdd));
-                sut.SelectTodaysBauShift();
-            }
-
-            //assert
-            foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
-            {
-                var orderedShiftLog = supportEngineer.ShiftLog.OrderByDescending(d => d.Date);
-                var lastShift = orderedShiftLog.First();
-                var secondToLastShift = orderedShiftLog.Last();
-                ((lastShift.Date - secondToLastShift.Date).TotalDays > 1).ShouldBeTrue();
-            }
-        }
-
     }
 }
