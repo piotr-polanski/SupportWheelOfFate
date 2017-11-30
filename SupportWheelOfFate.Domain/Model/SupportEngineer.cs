@@ -14,18 +14,23 @@ namespace SupportWheelOfFate.Domain.Model
 
         internal SupportEngineer(ICalendar calendar, SupportEngineerDto state)
         {
-            this._calendar = calendar;
+            _calendar = calendar;
             _state = state;
         }
 
         public int Id => _state.Id;
+
         public string Name => _state.Name;
-        public ICollection<Shift> ShiftLog => _state.ShiftLog;
+
+        public int ShiftCount => _state.ShiftLog.OrderByDescending(d => d.Date).Count();
+
+        public IEnumerable<Shift> LastTwoShifts => _state.ShiftLog.OrderByDescending(d => d.Date).Take(2).ToList();
 
         public void LogTodaysShift()
         {
-            ShiftLog.Add(new Shift() { Date = _calendar.Today});
+            _state.ShiftLog.Add(new Shift() { Date = _calendar.Today});
         }
+
 
         public bool DidntHadShiftYesterday()
         {
@@ -36,7 +41,7 @@ namespace SupportWheelOfFate.Domain.Model
         {
             if (DidntHadAnyShifts())
                 return false;
-            return (_calendar.Today.AddDays(-1) == ShiftLog.OrderByDescending(d => d.Date).First().Date);
+            return (_calendar.Today.AddDays(-1) == _state.ShiftLog.OrderByDescending(d => d.Date).First().Date);
         }
         public bool HadTwoShiftsInLastTwoWeeks()
         {
@@ -44,15 +49,15 @@ namespace SupportWheelOfFate.Domain.Model
                 return false;
             if (HaveMoreThanOneShift())
                 return 
-                    IsDateWithinTwoWeeks(ShiftLog.OrderByDescending(d => d.Date).Skip(1).First().Date) 
-                    && IsDateWithinTwoWeeks(ShiftLog.OrderByDescending(d => d.Date).First().Date);
+                    IsDateWithinTwoWeeks(_state.ShiftLog.OrderByDescending(d => d.Date).Skip(1).First().Date) 
+                    && IsDateWithinTwoWeeks(_state.ShiftLog.OrderByDescending(d => d.Date).First().Date);
             return false;
         }
 
         public bool HaveShiftToday()
         {
-            if (ShiftLog.Any())
-                return ShiftLog.OrderByDescending(d => d.Date).First().Date == _calendar.Today;
+            if (_state.ShiftLog.Any())
+                return _state.ShiftLog.OrderByDescending(d => d.Date).First().Date == _calendar.Today;
             return false;
         }
 
@@ -60,7 +65,7 @@ namespace SupportWheelOfFate.Domain.Model
         {
             if (DidntHadAnyShifts())
                 return true;
-            return ShiftLog.OrderByDescending(d => d.Date).First().Date < _calendar.Today.AddDays(-7);
+            return _state.ShiftLog.OrderByDescending(d => d.Date).First().Date < _calendar.Today.AddDays(-7);
         }
 
         public bool DidntHadTwoShiftInLastTwoWeeks()
@@ -70,12 +75,12 @@ namespace SupportWheelOfFate.Domain.Model
 
         private bool HaveMoreThanOneShift()
         {
-            return ShiftLog.Count > 1;
+            return _state.ShiftLog.Count > 1;
         }
 
         private bool DidntHadAnyShifts()
         {
-            return !ShiftLog.Any();
+            return !_state.ShiftLog.Any();
         }
 
         private bool IsDateWithinTwoWeeks(DateTime date)

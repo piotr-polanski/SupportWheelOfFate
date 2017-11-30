@@ -80,7 +80,7 @@ namespace SupportWheelOfFate.Domain.Tests.Model
             sut.LogTodaysShift();
 
             //assert
-            sut.ShiftLog.Count.ShouldBe(1);
+            sut.ShiftCount.ShouldBe(1);
         }
 
         [Theory, MemberData("DatesTwoWeeksAgo")]

@@ -36,7 +36,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             //at the beggining all engineers have 0 shifts
             foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
             {
-                supportEngineer.ShiftLog.Count.ShouldBe(0);
+                supportEngineer.ShiftCount.ShouldBe(0);
             }
             ;
             //simulate ten days of shifts
@@ -52,7 +52,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             //assert
             foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
             {
-                supportEngineer.ShiftLog.Count.ShouldBe(2);
+                supportEngineer.ShiftCount.ShouldBe(2);
             }
         }
 
@@ -79,7 +79,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             //at the beggining all engineers have 0 shifts
             foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
             {
-                supportEngineer.ShiftLog.Count.ShouldBe(0);
+                supportEngineer.ShiftCount.ShouldBe(0);
             }
             ;
             //simulate ten days of shifts
@@ -95,9 +95,9 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             //assert
             foreach (var supportEngineer in tenSupportEngineersWithouthShifts)
             {
-                var orderedShiftLog = supportEngineer.ShiftLog.OrderByDescending(d => d.Date);
-                var lastShift = orderedShiftLog.First();
-                var secondToLastShift = orderedShiftLog.Last();
+                var lastTwoShifts = supportEngineer.LastTwoShifts;
+                var lastShift = lastTwoShifts.First();
+                var secondToLastShift = lastTwoShifts.Last();
                 ((lastShift.Date - secondToLastShift.Date).TotalDays > 1).ShouldBeTrue();
             }
         }

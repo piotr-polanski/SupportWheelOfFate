@@ -68,8 +68,8 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             //those two engineers had only one shift in shift log
             //we're checking if today shift was added to log
             //thats how we know if they were selected
-            bauShift.Shift.First().ShiftLog.Count.ShouldBe(2);
-            bauShift.Shift.Last().ShiftLog.Count.ShouldBe(2);
+            bauShift.Shift.First().ShiftCount.ShouldBe(2);
+            bauShift.Shift.Last().ShiftCount.ShouldBe(2);
         }
     }
 }

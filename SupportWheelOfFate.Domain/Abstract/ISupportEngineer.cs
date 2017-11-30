@@ -7,8 +7,9 @@ namespace SupportWheelOfFate.Domain.Abstract
     {
         int Id { get;}
         string Name { get;}
-        ICollection<Shift> ShiftLog { get; }
         void LogTodaysShift();
+        int ShiftCount { get; }
+        IEnumerable<Shift> LastTwoShifts { get; } 
         bool DidntHadShiftYesterday();
         bool HadShiftYesterday();
         bool DidntHadTwoShiftInLastTwoWeeks();

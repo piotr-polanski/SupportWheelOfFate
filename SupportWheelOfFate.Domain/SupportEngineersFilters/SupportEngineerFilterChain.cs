@@ -6,7 +6,7 @@ using SupportWheelOfFate.Domain.Exceptions;
 
 namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 {
-    public abstract class SupportEngineerFilterChain : ISupportEngineersFilterChain
+    internal abstract class SupportEngineerFilterChain : ISupportEngineersFilterChain
     {
         protected SupportEngineerFilterChain(ISupportEngineersFilterChain successor)
         {
