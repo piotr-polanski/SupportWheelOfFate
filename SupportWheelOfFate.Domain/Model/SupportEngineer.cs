@@ -80,7 +80,7 @@ namespace SupportWheelOfFate.Domain.Model
 
         private bool IsDateWithinTwoWeeks(DateTime date)
         {
-            return (DateTime.Today - date).TotalDays <= FourteenDays;
+            return (_calendar.Today - date).TotalDays <= FourteenDays;
         }
 
     }
