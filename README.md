@@ -13,7 +13,7 @@ Simply run
 ```csharp
 SupportWhellOfFate.Domain.IntegrationTests.DefaultSupportEngineerFilterFactoryIntegrationTests 
 ```
-they will prove that 10 engineers in 10 days will have 2 shifts each, 
+in your favorite test runner. They will prove that 10 engineers in 10 days will have 2 shifts each, 
 and that none of engineers will have shift in consequent days.
 
 ## Business requirements
