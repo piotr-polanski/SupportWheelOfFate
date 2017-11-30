@@ -1,5 +1,5 @@
 using System.Web.Mvc;
-using SupportWheelOfFate.Domain.IoC;
+using SupportWheelOfFate.Domain.Infrastructure.IoC;
 using Unity;
 using Unity.Mvc5;
 

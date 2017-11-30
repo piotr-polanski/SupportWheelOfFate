@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using SupportWheelOfFate.Domain.Model;
 
-namespace SupportWheelOfFate.Domain.Repository
+namespace SupportWheelOfFate.Domain.Infrastructure.Repository
 {
     public class WheelOfFateInitializer : CreateDatabaseIfNotExists<WheelOfFateContext>
     {

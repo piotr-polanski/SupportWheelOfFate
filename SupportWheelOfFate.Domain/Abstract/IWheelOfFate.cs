@@ -1,6 +1,6 @@
 using SupportWheelOfFate.Domain.Model;
 
-namespace SupportWheelOfFate.Domain
+namespace SupportWheelOfFate.Domain.Abstract
 {
     public interface IWheelOfFate
     {

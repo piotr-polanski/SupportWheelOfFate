@@ -4,7 +4,7 @@ using Ploeh.AutoFixture;
 using Shouldly;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.Infrastructure;
-using SupportWheelOfFate.Domain.Repository;
+using SupportWheelOfFate.Domain.Infrastructure.Repository;
 using Xunit;
 
 namespace SupportWheelOfFate.Domain.Tests.Infrastructure

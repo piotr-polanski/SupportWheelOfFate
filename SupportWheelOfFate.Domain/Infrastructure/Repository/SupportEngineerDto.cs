@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using SupportWheelOfFate.Domain.Model;
 
-namespace SupportWheelOfFate.Domain.Repository
+namespace SupportWheelOfFate.Domain.Infrastructure.Repository
 {
     [Table("SupportEngineers")]
     public class SupportEngineerDto

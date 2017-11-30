@@ -1,5 +1,4 @@
-﻿using System.Data;
-using SupportWheelOfFate.Domain.Abstract;
+﻿using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.SupportEngineersFilters;
 
 namespace SupportWheelOfFate.Domain.FilterChainFactories

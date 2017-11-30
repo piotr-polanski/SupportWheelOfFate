@@ -1,7 +1,7 @@
 ﻿using System;
 using SupportWheelOfFate.Domain.Abstract;
 
-namespace SupportWheelOfFate.Domain
+namespace SupportWheelOfFate.Domain.Infrastructure
 {
     public class Calendar : ICalendar
     {

@@ -1,6 +1,4 @@
-﻿using SupportWheelOfFate.Domain.Abstract;
-
-namespace SupportWheelOfFate.Domain.FilterChainFactories
+﻿namespace SupportWheelOfFate.Domain.Abstract
 {
     public interface ISupportEngineerFilterChainFactory
     {

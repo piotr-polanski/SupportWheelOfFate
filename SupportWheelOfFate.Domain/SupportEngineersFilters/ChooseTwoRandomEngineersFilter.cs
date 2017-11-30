@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EnsureThat;
 using SupportWheelOfFate.Domain.Abstract;
-using SupportWheelOfFate.Domain.Exceptions;
-using SupportWheelOfFate.Domain.Model;
-using static EnsureThat.Ensure;
 
 namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 {

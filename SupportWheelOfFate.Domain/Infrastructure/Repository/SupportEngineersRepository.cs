@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using SupportWheelOfFate.Domain.Abstract;
 
-namespace SupportWheelOfFate.Domain.Repository
+namespace SupportWheelOfFate.Domain.Infrastructure.Repository
 {
     internal class SupportEngineersRepository : ISupportEngineersRepository
     {

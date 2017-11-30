@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using SupportWheelOfFate.Domain;
+using SupportWheelOfFate.Domain.Abstract;
 
 namespace SupportWheelOfFate.WebUI.Controllers
 {

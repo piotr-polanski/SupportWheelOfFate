@@ -58,25 +58,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\ICalendar.cs" />
+    <Compile Include="Abstract\ISupportEngineer.cs" />
+    <Compile Include="Abstract\ISupportEngineerFilterChainFactory.cs" />
     <Compile Include="Abstract\ISupportEngineersFactory.cs" />
     <Compile Include="Abstract\ISupportEngineersFilterChain.cs" />
     <Compile Include="Abstract\ISupportEngineersRepository.cs" />
-    <Compile Include="Calendar.cs" />
+    <Compile Include="Abstract\IWheelOfFate.cs" />
     <Compile Include="Exceptions\NotEnoughEngineersException.cs" />
     <Compile Include="FilterChainFactories\DefaultSupportEngineerFilterChainFactory.cs" />
-    <Compile Include="FilterChainFactories\ISupportEngineerFilterChainFactory.cs" />
+    <Compile Include="Infrastructure\Calendar.cs" />
     <Compile Include="Infrastructure\SupportEngineersFactory.cs" />
-    <Compile Include="IoC\WheelOfFateUnityRegistration.cs" />
-    <Compile Include="IWheelOfFate.cs" />
+    <Compile Include="Infrastructure\IoC\WheelOfFateUnityRegistration.cs" />
     <Compile Include="Model\BauShift.cs" />
-    <Compile Include="Model\ISupportEngineer.cs" />
     <Compile Include="Model\Shift.cs" />
     <Compile Include="Model\SupportEngineer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\SupportEngineerDto.cs" />
-    <Compile Include="Repository\SupportEngineersRepository.cs" />
-    <Compile Include="Repository\WheelOfFateContext.cs" />
-    <Compile Include="Repository\WheelOfFateInitializer.cs" />
+    <Compile Include="Infrastructure\Repository\SupportEngineerDto.cs" />
+    <Compile Include="Infrastructure\Repository\SupportEngineersRepository.cs" />
+    <Compile Include="Infrastructure\Repository\WheelOfFateContext.cs" />
+    <Compile Include="Infrastructure\Repository\WheelOfFateInitializer.cs" />
     <Compile Include="SupportEngineersFilters\ChooseTwoRandomEngineersFilter.cs" />
     <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadShiftYesterdayFilter.cs" />
     <Compile Include="SupportEngineersFilters\EngineersWhoDidntHadTwoShiftsInLastTwoWeeksFilter.cs" />

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using EnsureThat;
 using SupportWheelOfFate.Domain.Abstract;
-using SupportWheelOfFate.Domain.Exceptions;
-using SupportWheelOfFate.Domain.Model;
 
 namespace SupportWheelOfFate.Domain.SupportEngineersFilters
 {

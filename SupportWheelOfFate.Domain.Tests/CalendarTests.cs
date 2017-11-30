@@ -1,5 +1,6 @@
 ﻿using System;
 using Shouldly;
+using SupportWheelOfFate.Domain.Infrastructure;
 using Xunit;
 
 namespace SupportWheelOfFate.Domain.Tests

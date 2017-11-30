@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using FakeItEasy;
 using SupportWheelOfFate.Domain.Abstract;
-using SupportWheelOfFate.Domain.Repository;
+using SupportWheelOfFate.Domain.Infrastructure.Repository;
 
 namespace SupportWheelOfFate.Domain.Tests.Builders
 {

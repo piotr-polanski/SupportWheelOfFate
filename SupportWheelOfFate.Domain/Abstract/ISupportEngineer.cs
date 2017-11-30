@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
+using SupportWheelOfFate.Domain.Model;
 
-namespace SupportWheelOfFate.Domain.Model
+namespace SupportWheelOfFate.Domain.Abstract
 {
     public interface ISupportEngineer
     {

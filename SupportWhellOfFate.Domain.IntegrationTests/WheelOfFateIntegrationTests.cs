@@ -8,7 +8,6 @@ using SupportWheelOfFate.Domain;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
-using SupportWheelOfFate.Domain.Repository;
 using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;
 

@@ -1,11 +1,10 @@
 ﻿using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.FilterChainFactories;
-using SupportWheelOfFate.Domain.Infrastructure;
-using SupportWheelOfFate.Domain.Repository;
+using SupportWheelOfFate.Domain.Infrastructure.Repository;
 using Unity;
 using Unity.Lifetime;
 
-namespace SupportWheelOfFate.Domain.IoC
+namespace SupportWheelOfFate.Domain.Infrastructure.IoC
 {
     public class WheelOfFateUnityRegistration
     {

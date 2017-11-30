@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SupportWheelOfFate.Domain.Abstract;
-using SupportWheelOfFate.Domain.Repository;
+using SupportWheelOfFate.Domain.Infrastructure.Repository;
 
 namespace SupportWheelOfFate.Domain.Model
 {

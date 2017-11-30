@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SupportWheelOfFate.Domain.Abstract;
 
 namespace SupportWheelOfFate.Domain.Model
 {

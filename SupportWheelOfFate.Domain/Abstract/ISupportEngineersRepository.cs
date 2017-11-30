@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SupportWheelOfFate.Domain.Repository;
+using SupportWheelOfFate.Domain.Infrastructure.Repository;
 
 namespace SupportWheelOfFate.Domain.Abstract
 {

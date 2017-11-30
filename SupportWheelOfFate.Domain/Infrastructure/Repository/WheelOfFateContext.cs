@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
-using SupportWheelOfFate.Domain.Model;
 
-namespace SupportWheelOfFate.Domain.Repository
+namespace SupportWheelOfFate.Domain.Infrastructure.Repository
 {
     public class WheelOfFateContext : DbContext
     {
