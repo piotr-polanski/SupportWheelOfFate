@@ -34,8 +34,8 @@ namespace SupportWheelOfFate.Domain.Tests
             BauShift todaysBauShift = sut.SelectTodaysBauShift();
 
             //assert
-            todaysBauShift.MorningShiftEngineer.ShouldNotBeNull();
-            todaysBauShift.AfterNoonShiftEngineer.ShouldNotBeNull();
+            todaysBauShift.Shift.ShouldNotBeNull();
+            todaysBauShift.Shift.ShouldNotBeEmpty();
         }
 
         [Fact]
@@ -53,8 +53,8 @@ namespace SupportWheelOfFate.Domain.Tests
             BauShift todaysBauShift = sut.SelectTodaysBauShift();
 
             //assert
-            supportEngineersFromFilter.First().ShouldBe(todaysBauShift.MorningShiftEngineer);
-            supportEngineersFromFilter.Last().ShouldBe(todaysBauShift.AfterNoonShiftEngineer);
+            supportEngineersFromFilter.First().ShouldBe(todaysBauShift.Shift.First());
+            supportEngineersFromFilter.Last().ShouldBe(todaysBauShift.Shift.Last());
 
         }
 

@@ -27,9 +27,9 @@ namespace SupportWheelOfFate.Domain
 
             var engineersFilterChain = _supportEngineersFilterChainFactory.Create();
 
-            var theChosenOnes = engineersFilterChain.Filter(avaliableEngineers);
+            var shift = engineersFilterChain.Filter(avaliableEngineers);
 
-            var bauShift = new BauShift(theChosenOnes.First(), theChosenOnes.Last());
+            var bauShift = new BauShift(shift);
 
             _supportEngineersRepository.Save();
 

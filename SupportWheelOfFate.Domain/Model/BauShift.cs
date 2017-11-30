@@ -1,14 +1,14 @@
-﻿namespace SupportWheelOfFate.Domain.Model
+﻿using System.Collections.Generic;
+
+namespace SupportWheelOfFate.Domain.Model
 {
     public class BauShift
     {
-        public BauShift(ISupportEngineer morningShiftEngineer, ISupportEngineer afterNoonShiftEngineer)
+        public BauShift(IEnumerable<ISupportEngineer> shift)
         {
-            MorningShiftEngineer = morningShiftEngineer;
-            AfterNoonShiftEngineer = afterNoonShiftEngineer;
+            Shift = shift;
         }
 
-        public ISupportEngineer MorningShiftEngineer { get; }
-        public ISupportEngineer AfterNoonShiftEngineer { get; }
+        public IEnumerable<ISupportEngineer> Shift { get; }
     }
 }

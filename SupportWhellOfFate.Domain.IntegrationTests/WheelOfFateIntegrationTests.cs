@@ -66,13 +66,12 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
 
             //assert
             bauShift.ShouldNotBeNull();
-            bauShift.MorningShiftEngineer.ShouldNotBeNull();
-            bauShift.AfterNoonShiftEngineer.ShouldNotBeNull();
+            bauShift.Shift.ShouldNotBeEmpty();
             //those two engineers had only one shift in shift log
             //we're checking if today shift was added to log
             //thats how we know if they were selected
-            bauShift.MorningShiftEngineer.ShiftLog.Count.ShouldBe(2);
-            bauShift.AfterNoonShiftEngineer.ShiftLog.Count.ShouldBe(2);
+            bauShift.Shift.First().ShiftLog.Count.ShouldBe(2);
+            bauShift.Shift.Last().ShiftLog.Count.ShouldBe(2);
         }
     }
 }
