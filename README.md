@@ -9,7 +9,11 @@ Don't be suprised if after refresh selected shift engineers will not change - th
 Tomorrow Wheel of Fate will choose others ;)
 
 ## But how can I know if the business requirements has been met?
-Simply run DefaultSupportEngineerFilterFactoryIntegrationTests they will prove that 10 engineers in 10 days will have 2 shifts each, 
+Simply run 
+```csharp
+SupportWhellOfFate.Domain.IntegrationTests.DefaultSupportEngineerFilterFactoryIntegrationTests 
+```
+they will prove that 10 engineers in 10 days will have 2 shifts each, 
 and that none of engineers will have shift in consequent days.
 
 ## Business requirements
