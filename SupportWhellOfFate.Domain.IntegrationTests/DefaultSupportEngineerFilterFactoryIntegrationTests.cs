@@ -5,7 +5,6 @@ using FakeItEasy;
 using Shouldly;
 using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.Infrastructure;
-using SupportWheelOfFate.Domain.Model;
 using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;
 
@@ -15,7 +14,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
     {
         [Theory]
         [Repeat(100)]
-        public void SelectTodaysBauShift_Given_10ENgineersWith0Shifts_After10DaysOfShifts_EachEngineerHave2ShiftsLogged()
+        public void SelectTodaysBauShift_Given_10EngineersWith0Shifts_After10DaysOfShifts_EachEngineerHave20ShiftsLogged()
         {
             //arrange
             int numberOfEngineers = 10;
@@ -58,7 +57,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
 
         [Theory]
         [Repeat(100)]
-        public void SelectTodaysBauShift_Given_10ENgineersWith0Shifts_After10DaysOfShifts_EachEngineerDidntHadShiftInTwoCosequentDays()
+        public void SelectTodaysBauShift_Given_10EngineersWith0Shifts_After10DaysOfShifts_EachEngineerDidntHadShiftInTwoCosequentDays()
         {
             //arrange
             int numberOfEngineers = 10;

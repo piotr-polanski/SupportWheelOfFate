@@ -51,7 +51,7 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
 
             var supportEngineerRepository = A.Fake<ISupportEngineersRepository>();
             var supportEngineersFactory = A.Fake<ISupportEngineersFactory>();
-            A.CallTo(() => supportEngineersFactory.CreteSupportEngineers())
+            A.CallTo(() => supportEngineersFactory.GetSupportEngineers())
                 .Returns(engineers);
 
             //var supportEngineersFactory = new SupportEngineers

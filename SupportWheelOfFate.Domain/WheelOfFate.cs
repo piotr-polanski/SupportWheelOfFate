@@ -20,17 +20,15 @@ namespace SupportWheelOfFate.Domain
 
         public BauShift SelectTodaysBauShift()
         {
-            var avaliableEngineers = _supportEngineersFactory.CreteSupportEngineers();
+            var avaliableEngineers = _supportEngineersFactory.GetSupportEngineers();
 
             var engineersFilterChain = _supportEngineersFilterChainFactory.Create();
 
             var shift = engineersFilterChain.Filter(avaliableEngineers);
 
-            var bauShift = new BauShift(shift);
-
             _supportEngineersRepository.Save();
 
-            return bauShift;
+            return new BauShift(shift);
         }
     }
 }

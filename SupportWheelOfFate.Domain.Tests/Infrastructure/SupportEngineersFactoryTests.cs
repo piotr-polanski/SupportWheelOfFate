@@ -25,7 +25,7 @@ namespace SupportWheelOfFate.Domain.Tests.Infrastructure
             var sut = new SupportEngineersFactory(supportEngineersRepository, null);
 
             //act
-            var supportEngineers = sut.CreteSupportEngineers();
+            var supportEngineers = sut.GetSupportEngineers();
 
             //assert
             supportEngineers.Count().ShouldBe(supportEngineerDto.Count());

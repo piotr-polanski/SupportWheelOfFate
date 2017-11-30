@@ -47,7 +47,7 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
 
         public WheelOfFate Build()
         {
-            A.CallTo(() => _supportEngineersFactory.CreteSupportEngineers())
+            A.CallTo(() => _supportEngineersFactory.GetSupportEngineers())
                 .Returns(_supportEngineersFromRepo);
 
             var engineersFilterChain = A.Fake<ISupportEngineersFilterChain>();
