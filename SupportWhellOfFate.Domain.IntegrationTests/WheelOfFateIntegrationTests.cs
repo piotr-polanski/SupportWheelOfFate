@@ -16,7 +16,6 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
 {
     public class WheelOfFateIntegrationTests
     {
-        private readonly DefaultSupportEngineerFilterFactoryIntegrationTests _defaultSupportEngineerFilterFactoryIntegrationTests = new DefaultSupportEngineerFilterFactoryIntegrationTests();
 
         [Fact]
         public void SelectTodaysBauShift_Given_16Engineers_Returns_TwoEngineers()
