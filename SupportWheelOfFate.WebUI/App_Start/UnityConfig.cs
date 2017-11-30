@@ -3,7 +3,7 @@ using SupportWheelOfFate.Domain.IoC;
 using Unity;
 using Unity.Mvc5;
 
-namespace SupportWhellOfFate.Web
+namespace SupportWhellOfFate.WebUI
 {
     public static class UnityConfig
     {

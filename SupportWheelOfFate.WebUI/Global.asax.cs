@@ -1,7 +1,9 @@
 ﻿using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
+using SupportWhellOfFate.WebUI;
 
-namespace SupportWhellOfFate.Web
+namespace SupportWheelOfFate.WebUI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -9,7 +11,9 @@ namespace SupportWhellOfFate.Web
         {
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterComponents();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

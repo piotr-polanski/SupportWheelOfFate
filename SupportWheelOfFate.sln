@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportWheelOfFate.Domain", "SupportWheelOfFate.Domain\SupportWheelOfFate.Domain.csproj", "{131E64BF-5DB9-4C78-818E-7336DF1A006B}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportWhellOfFate.Domain.IntegrationTests", "SupportWhellOfFate.Domain.IntegrationTests\SupportWhellOfFate.Domain.IntegrationTests.csproj", "{AFC87BB7-732B-4730-A86C-5D24A7352B8A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportWhellOfFate.Web", "SupportWhellOfFate.Web\SupportWhellOfFate.Web.csproj", "{ED1DD09A-0350-4BF0-B56B-50669D067808}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportWheelOfFate.WebUI", "SupportWheelOfFate.WebUI\SupportWheelOfFate.WebUI.csproj", "{FD810BB6-891D-486C-BF64-F50445C1B65F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{ED1DD09A-0350-4BF0-B56B-50669D067808}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED1DD09A-0350-4BF0-B56B-50669D067808}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED1DD09A-0350-4BF0-B56B-50669D067808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD810BB6-891D-486C-BF64-F50445C1B65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD810BB6-891D-486C-BF64-F50445C1B65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD810BB6-891D-486C-BF64-F50445C1B65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD810BB6-891D-486C-BF64-F50445C1B65F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD2F7265-C946-4840-84E8-2D061F674CF7}
 	EndGlobalSection
 EndGlobal
