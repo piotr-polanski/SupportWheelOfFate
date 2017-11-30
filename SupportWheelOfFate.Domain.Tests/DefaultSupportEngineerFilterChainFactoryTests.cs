@@ -1,5 +1,5 @@
 ﻿using Shouldly;
-using SupportWheelOfFate.Domain.FilterChainFactories;
+using SupportWheelOfFate.Domain.Infrastructure;
 using SupportWheelOfFate.Domain.SupportEngineersFilters;
 using Xunit;
 

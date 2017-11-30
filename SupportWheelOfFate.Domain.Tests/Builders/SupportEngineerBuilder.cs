@@ -16,6 +16,8 @@ namespace SupportWheelOfFate.Domain.Tests.Builders
         public SupportEngineerBuilder()
         {
             A.CallTo(() => _calendar.Today).Returns(DateTime.Today);
+            A.CallTo(() => _calendar.WeekAgo).Returns(DateTime.Today.AddDays(-7));
+            A.CallTo(() => _calendar.Yesterday).Returns(DateTime.Today.AddDays(-1));
         }
 
         public SupportEngineer Build()

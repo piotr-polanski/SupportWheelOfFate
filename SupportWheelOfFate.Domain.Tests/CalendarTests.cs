@@ -1,5 +1,6 @@
 ﻿using System;
 using Shouldly;
+using SupportWheelOfFate.Domain.Helpers;
 using SupportWheelOfFate.Domain.Infrastructure;
 using Xunit;
 

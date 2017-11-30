@@ -31,7 +31,6 @@ namespace SupportWheelOfFate.Domain.Model
             _state.ShiftLog.Add(new Shift() { Date = _calendar.Today});
         }
 
-
         public bool DidntHadShiftYesterday()
         {
             return !HadShiftYesterday();
@@ -41,23 +40,27 @@ namespace SupportWheelOfFate.Domain.Model
         {
             if (DidntHadAnyShifts())
                 return false;
-            return (_calendar.Today.AddDays(-1) == _state.ShiftLog.OrderByDescending(d => d.Date).First().Date);
+
+            return _calendar.Yesterday == NewestShift().Date;
         }
+
         public bool HadTwoShiftsInLastTwoWeeks()
         {
             if (DidntHadAnyShifts())
                 return false;
+
             if (HaveMoreThanOneShift())
-                return 
-                    IsDateWithinTwoWeeks(_state.ShiftLog.OrderByDescending(d => d.Date).Skip(1).First().Date) 
-                    && IsDateWithinTwoWeeks(_state.ShiftLog.OrderByDescending(d => d.Date).First().Date);
+                return IsDateWithinTwoWeeks(SecondNewestShift().Date) 
+                    && IsDateWithinTwoWeeks(NewestShift().Date);
+
             return false;
         }
 
         public bool HaveShiftToday()
         {
             if (_state.ShiftLog.Any())
-                return _state.ShiftLog.OrderByDescending(d => d.Date).First().Date == _calendar.Today;
+                return NewestShift().Date == _calendar.Today;
+
             return false;
         }
 
@@ -65,7 +68,8 @@ namespace SupportWheelOfFate.Domain.Model
         {
             if (DidntHadAnyShifts())
                 return true;
-            return _state.ShiftLog.OrderByDescending(d => d.Date).First().Date < _calendar.Today.AddDays(-7);
+
+            return NewestShift().Date < _calendar.WeekAgo;
         }
 
         public bool DidntHadTwoShiftInLastTwoWeeks()
@@ -78,6 +82,11 @@ namespace SupportWheelOfFate.Domain.Model
             return _state.ShiftLog.Count > 1;
         }
 
+        private Shift SecondNewestShift()
+        {
+            return _state.ShiftLog.OrderByDescending(d => d.Date).Skip(1).First();
+        }
+
         private bool DidntHadAnyShifts()
         {
             return !_state.ShiftLog.Any();
@@ -88,5 +97,9 @@ namespace SupportWheelOfFate.Domain.Model
             return (_calendar.Today - date).TotalDays <= FourteenDays;
         }
 
+        private Shift NewestShift()
+        {
+            return _state.ShiftLog.OrderByDescending(d => d.Date).First();
+        }
     }
 }

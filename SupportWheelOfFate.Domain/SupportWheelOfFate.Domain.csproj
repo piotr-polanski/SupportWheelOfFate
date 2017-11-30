@@ -65,8 +65,8 @@
     <Compile Include="Abstract\ISupportEngineersRepository.cs" />
     <Compile Include="Abstract\IWheelOfFate.cs" />
     <Compile Include="Exceptions\NotEnoughEngineersException.cs" />
-    <Compile Include="FilterChainFactories\DefaultSupportEngineerFilterChainFactory.cs" />
-    <Compile Include="Infrastructure\Calendar.cs" />
+    <Compile Include="Infrastructure\DefaultSupportEngineerFilterChainFactory.cs" />
+    <Compile Include="Helpers\Calendar.cs" />
     <Compile Include="Infrastructure\SupportEngineersFactory.cs" />
     <Compile Include="Infrastructure\IoC\WheelOfFateUnityRegistration.cs" />
     <Compile Include="Model\BauShift.cs" />

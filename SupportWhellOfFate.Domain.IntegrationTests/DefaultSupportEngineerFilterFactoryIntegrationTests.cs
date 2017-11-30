@@ -4,7 +4,7 @@ using System.Linq;
 using FakeItEasy;
 using Shouldly;
 using SupportWheelOfFate.Domain.Abstract;
-using SupportWheelOfFate.Domain.FilterChainFactories;
+using SupportWheelOfFate.Domain.Infrastructure;
 using SupportWheelOfFate.Domain.Model;
 using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;
@@ -86,9 +86,11 @@ namespace SupportWhellOfFate.Domain.IntegrationTests
             for (int daysToAdd = 0; daysToAdd < numberOfDays; daysToAdd++)
             {
                 //simulate weekend
-                if (daysToAdd == 5)
+                if (daysToAdd == 5) 
                     daysToAdd = daysToAdd + 2;
+
                 A.CallTo(() => calendar.Today).Returns(DateTime.Today.AddDays(daysToAdd));
+
                 sut.Filter(tenSupportEngineersWithouthShifts);
             }
 

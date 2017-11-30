@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using FakeItEasy;
 using SupportWheelOfFate.Domain.Abstract;
-using SupportWheelOfFate.Domain.FilterChainFactories;
 using SupportWheelOfFate.Domain.Model;
 
 namespace SupportWheelOfFate.Domain.Tests.Builders

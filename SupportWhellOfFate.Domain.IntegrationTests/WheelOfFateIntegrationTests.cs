@@ -6,7 +6,7 @@ using FakeItEasy;
 using Shouldly;
 using SupportWheelOfFate.Domain;
 using SupportWheelOfFate.Domain.Abstract;
-using SupportWheelOfFate.Domain.FilterChainFactories;
+using SupportWheelOfFate.Domain.Infrastructure;
 using SupportWheelOfFate.Domain.Model;
 using SupportWheelOfFate.Domain.Tests.Builders;
 using Xunit;

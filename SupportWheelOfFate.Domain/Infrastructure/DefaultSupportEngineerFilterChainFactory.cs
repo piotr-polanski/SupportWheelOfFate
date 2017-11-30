@@ -1,7 +1,7 @@
 ﻿using SupportWheelOfFate.Domain.Abstract;
 using SupportWheelOfFate.Domain.SupportEngineersFilters;
 
-namespace SupportWheelOfFate.Domain.FilterChainFactories
+namespace SupportWheelOfFate.Domain.Infrastructure
 {
     internal class DefaultSupportEngineerFilterChainFactory : ISupportEngineerFilterChainFactory
     {
